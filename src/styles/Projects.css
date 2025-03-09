@@ -1,0 +1,448 @@
+/* Projects Section Styles */
+.projects-section {
+  min-height: 100vh;
+  height: auto; /* Allow content to expand the section height */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projects-bg {
+  background: linear-gradient(135deg, #1a1a1a, #252525);
+  opacity: 0.7;
+}
+
+/* Project Categories */
+.projects-category {
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.projects-category > h3.category-title {
+  align-self: flex-start;
+  width: 100%;
+  margin-top: 1rem;
+  margin-left: 0;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+/* Category Title - Animated with translation */
+.category-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+  color: #ffffff;
+  font-weight: 700;
+  z-index: 10;
+  opacity: 1; /* Always fully visible */
+  transform: translateY(20px); /* Start slightly below final position */
+  transition: transform 0.6s ease-out;
+  will-change: transform;
+}
+
+/* Animation class for category title */
+.category-title.animate {
+  transform: translateY(0); /* Move to final position */
+}
+
+.category-title::after {
+  content: '';
+  position: absolute;
+  height: 3px;
+  width: 0; /* Start with no width */
+  background: var(--gradient-primary);
+  bottom: -8px;
+  left: 0;
+  border-radius: 4px;
+  transition: width 0.6s ease-out, box-shadow 0.6s ease-out;
+  will-change: width, box-shadow;
+}
+
+/* Animation class for category title underline */
+.category-title.animate-underline::after {
+  width: 40px;
+  box-shadow: 0 0 8px rgba(157, 78, 221, 0.6);
+}
+
+/* Project and College Cards - Animated like skill cards in About section */
+.project-card, .college-card {
+  /* Initial state for animation */
+  will-change: opacity, transform;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.project-card.animate, .college-card.animate {
+  /* Animation is applied via JS */
+}
+
+.project-card:hover, .college-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Standardize glow effect for both card types */
+.project-card.glow-on-hover:before,
+.college-card.glow-on-hover:before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+  opacity: 0;
+  border-radius: inherit;
+  transition: opacity 0.3s ease;
+  filter: blur(20px);
+}
+
+.project-card.glow-on-hover:hover:before,
+.college-card.glow-on-hover:hover:before {
+  opacity: 0.3;
+}
+
+.project-card.glow-on-hover:after,
+.college-card.glow-on-hover:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--card-bg);
+  border-radius: inherit;
+}
+
+/* Ensure content is above the glow */
+.project-content, .college-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Card contents - No animations, immediately visible */
+.college-content h3,
+.college-content p,
+.college-content .college-date,
+.college-content .college-tags,
+.college-content .college-links,
+.project-content h3,
+.project-content p,
+.project-content .project-tech,
+.project-content .project-links {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Remove animate classes for card contents */
+.college-content h3.animate,
+.college-content p.animate,
+.college-content .college-date.animate,
+.college-content .college-tags.animate,
+.college-content .college-links.animate,
+.project-content h3.animate,
+.project-content p.animate,
+.project-content .project-tech.animate,
+.project-content .project-links.animate {
+  /* No animation needed */
+}
+
+/* Content animations inside college/academic project cards */
+.college-content h3,
+.college-content .college-date,
+.college-content p:not(.college-date),
+.college-content .college-tags,
+.college-content .college-links {
+  opacity: 1; /* Always fully visible */
+  transform: translateY(20px); /* Start slightly below final position */
+  transition: transform 0.5s ease-out;
+  will-change: transform;
+  position: relative; /* Ensure z-index works */
+  z-index: 2; /* Place above the glow effect */
+}
+
+/* Animation classes for college card contents */
+.college-content h3.animate,
+.college-content .college-date.animate,
+.college-content p:not(.college-date).animate,
+.college-content .college-tags.animate,
+.college-content .college-links.animate {
+  transform: translateY(0); /* Move to final position */
+}
+
+/* Individual tag animations */
+.college-tags span {
+  display: inline-block;
+  transform: translateY(15px);
+  transition: transform 0.4s ease-out;
+  will-change: transform;
+  position: relative;
+  z-index: 2;
+}
+
+.college-tags.animate span {
+  transform: translateY(0);
+}
+
+/* Staggered delays for tags */
+.college-tags.animate span:nth-child(1) { transition-delay: 0ms; }
+.college-tags.animate span:nth-child(2) { transition-delay: 100ms; }
+.college-tags.animate span:nth-child(3) { transition-delay: 200ms; }
+.college-tags.animate span:nth-child(4) { transition-delay: 300ms; }
+
+/* College Project Cards */
+.college-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.college-card {
+  border-radius: 16px;
+  background: var(--card-bg);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-color);
+  transition: all 0.8s ease-out;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.college-card:hover {
+  border-color: rgba(157, 78, 221, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.college-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-medium);
+}
+
+.college-card:hover::before {
+  transform: scaleX(1);
+}
+
+.college-content {
+  padding: 1.5rem;
+}
+
+.college-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.college-date {
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  background: rgba(157, 78, 221, 0.1);
+  border-radius: 20px;
+}
+
+.college-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.college-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.college-tags span {
+  padding: 0.3rem 0.7rem;
+  background: rgba(157, 78, 221, 0.07);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  transition: all var(--transition-fast);
+}
+
+.college-tags span:hover {
+  background: rgba(157, 78, 221, 0.15);
+}
+
+.college-links {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Project Cards */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.project-card {
+  border-radius: 16px;
+  background: var(--card-bg);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-color);
+  transition: all 0.8s ease-out;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.project-card:hover {
+  border-color: rgba(157, 78, 221, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-medium);
+}
+
+.project-card:hover::after {
+  transform: scaleX(1);
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-tech span {
+  padding: 0.3rem 0.7rem;
+  background: rgba(157, 78, 221, 0.07);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  transition: all var(--transition-fast);
+}
+
+.project-tech span:hover {
+  background: rgba(157, 78, 221, 0.15);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  color: var(--text-primary);
+  background-color: transparent;
+  border: 1px solid var(--accent-primary);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--accent-primary);
+  z-index: -1;
+  transition: width var(--transition-medium);
+}
+
+.btn-link:hover {
+  color: var(--text-primary);
+}
+
+.btn-link:hover::before {
+  width: 100%;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .projects-grid,
+  .college-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid,
+  .college-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .projects-grid,
+  .college-grid {
+    grid-template-columns: 1fr;
+  }
+} 

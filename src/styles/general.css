@@ -1,0 +1,294 @@
+:root {
+  --text-primary: #f8f8f8;
+  --text-secondary: #a0a0a0;
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --accent-primary: #9d4edd;
+  --accent-secondary: #ff9900;
+  --accent-color: #9d4edd;
+  --nav-bg: rgba(20, 20, 20, 0.8);
+  --card-bg: rgba(30, 30, 30, 0.7);
+  --border-color: rgba(80, 80, 80, 0.2);
+  --transition-fast: 0.15s ease;
+  --transition-medium: 0.3s ease;
+  --bg-gradient-1: #121212;
+  --bg-gradient-2: #1a1a1a;
+  --bg-gradient-overlay: rgba(0, 0, 0, 0.6);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* General link styles */
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+/* General button styles */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Main portfolio container */
+.portfolio {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+/* Cursor glow effect */
+.cursor-glow {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(157, 78, 221, 0.15) 0%,
+    rgba(255, 153, 0, 0.05) 40%,
+    transparent 70%
+  );
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  filter: blur(20px);
+}
+
+/* Main content styles */
+main {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Parallax section styles */
+.parallax-section {
+  padding: 0;
+  min-height: 100vh; /* Minimum height is viewport height */
+  height: auto; /* Allow height to grow as needed */
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* For the home section only, we keep exact height */
+.home-section.parallax-section {
+  height: 100vh;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Section content container */
+.section-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* Section title styles */
+.section-title {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+  display: inline-block;
+}
+
+.section-title.animate-underline::after {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 0;
+  background-color: #ff9900;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(255, 153, 0, 0.7);
+  will-change: width, opacity;
+  animation: expandWidthName 0.6s 0.4s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandWidthName {
+  0% {
+    width: 0;
+    opacity: 0.6;
+  }
+  100% {
+    width: 180px;
+    opacity: 1;
+  }
+}
+
+.section-header {
+  position: relative;
+  margin-bottom: 2rem;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.big-number {
+  font-size: 1.6rem; /* Make it smaller */
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  top: 0.7rem; /* Position at top */
+  left: 2rem; /* Position at left with some margin */
+  line-height: 1;
+  z-index: 2;
+  opacity: 1;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .section-title {
+    font-size: 3.2rem;
+    margin-bottom: 2.5rem;
+    animation-duration: 0.7s;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-content {
+    padding: 2rem 1rem;
+  }
+  
+  .section-title {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    animation-duration: 0.6s;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    /* Even faster animation for mobile */
+    animation-duration: 0.5s;
+  }
+}
+
+/* Remove smooth scroll behavior */
+html {
+  scroll-behavior: auto;
+}
+
+/* Add a bit of spacing between sections */
+.parallax-section {
+  padding: 100px 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Adjust main element to properly handle scrolling sections */
+main {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Offset for scroll targets to account for navigation */
+section {
+  scroll-margin-top: 50px;
+} 
