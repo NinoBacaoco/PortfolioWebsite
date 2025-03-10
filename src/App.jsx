@@ -152,7 +152,7 @@ function App() {
         }}
       ></div>
       
-      {/* Firefly animation that can be dragged and lights up on hover */}
+      {/* Firefly animation with fixed positioning */}
       <Firefly count={15} />
       
       {/* Portfolio Navigation */}

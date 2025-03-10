@@ -13,10 +13,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Set base font size */
+  font-size: 16px;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  min-width: 320px;
 }
 
 body {
@@ -24,6 +28,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
+  /* Prevent content from overflowing on extreme zoom levels */
+  max-width: 100vw;
 }
 
 /* Remove default button styling */
@@ -39,6 +45,30 @@ button {
 /* Remove list styling */
 ul, ol {
   list-style: none;
+}
+
+/* Responsive font scaling */
+@media (max-width: 768px) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+/* Handle extreme zoom levels */
+@media (max-width: 400px) {
+  :root {
+    font-size: 13px;
+  }
+  
+  html, body {
+    min-width: 300px;
+  }
 }
 
 /* Disable light mode preference media query to enforce dark theme */

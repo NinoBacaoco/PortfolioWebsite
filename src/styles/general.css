@@ -91,7 +91,7 @@ main {
 
 /* Parallax section styles */
 .parallax-section {
-  padding: 0;
+  padding: 2rem 1rem;
   min-height: 100vh; /* Minimum height is viewport height */
   height: auto; /* Allow height to grow as needed */
   box-sizing: border-box;
@@ -104,9 +104,10 @@ main {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* For the home section only, we keep exact height */
+/* For the home section only, we make it flexible */
 .home-section.parallax-section {
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 
 .parallax-bg {
@@ -237,6 +238,10 @@ main {
     margin-bottom: 2.5rem;
     animation-duration: 0.7s;
   }
+  
+  .section-content {
+    padding: 2.5rem 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -253,10 +258,50 @@ main {
 
 @media (max-width: 576px) {
   .section-title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     margin-bottom: 1.5rem;
-    /* Even faster animation for mobile */
-    animation-duration: 0.5s;
+  }
+  
+  .section-content {
+    padding: 1.5rem 1rem;
+  }
+  
+  .big-number {
+    font-size: 1.2rem;
+    left: 1rem;
+  }
+}
+
+/* Additional media queries for better zoom handling */
+@media (max-width: 400px), (max-height: 600px) {
+  .parallax-section {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .section-content {
+    padding: 1rem 0.75rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .big-number {
+    font-size: 1rem;
+    left: 0.75rem;
+    top: 0.5rem;
+  }
+}
+
+/* Handle extreme zoom levels */
+@media (max-width: 320px), (max-height: 500px) {
+  .parallax-section {
+    padding: 1rem 0.5rem;
+  }
+  
+  .section-content {
+    padding: 0.75rem 0.5rem;
   }
 }
 

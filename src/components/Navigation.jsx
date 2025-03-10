@@ -4,14 +4,28 @@ import '../styles/Navigation.css';
 function Navigation({ activeSection, handleSectionChange }) {
   const [isSticky, setIsSticky] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isTabletOrMobile, setIsTabletOrMobile] = useState(false);
   
   // Threshold for when to start/complete transition
   const START_TRANSITION = 100;  // Start transition after this many pixels
   const END_TRANSITION = 400;    // Complete transition at this scroll position
 
   useEffect(() => {
+    // Check if we're on tablet or mobile
+    const checkTabletOrMobile = () => {
+      setIsTabletOrMobile(window.innerWidth <= 992);
+    };
+    
+    // Initial check
+    checkTabletOrMobile();
+    
     // Handle scroll events for smooth transition to sticky
     const handleScroll = () => {
+      // Skip transition logic on tablet/mobile
+      if (isTabletOrMobile) {
+        return;
+      }
+      
       // Current scroll position
       const scrollY = window.scrollY;
       
@@ -42,47 +56,40 @@ function Navigation({ activeSection, handleSectionChange }) {
         navElement.style.setProperty('display', 'block', 'important');
         navElement.style.setProperty('opacity', '1', 'important');
         navElement.style.setProperty('visibility', 'visible', 'important');
-        navElement.style.setProperty('z-index', '10000', 'important');
       }
     };
     
     // Initial visibility force
     forceNavVisibility();
     
-    // Add scroll event listener
+    // Add event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Update on window resize
-    window.addEventListener('resize', forceNavVisibility);
+    window.addEventListener('resize', () => {
+      checkTabletOrMobile();
+      forceNavVisibility();
+    });
     
     // Call handleScroll once to set initial state
     handleScroll();
     
     return () => {
-      window.removeEventListener('resize', forceNavVisibility);
+      window.removeEventListener('resize', checkTabletOrMobile);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isTabletOrMobile]);
 
   // Calculate smooth transition styles
   const getNavStyle = () => {
-    // Responsive values based on screen width
-    const getTopValue = () => {
-      if (window.innerWidth <= 576) {
-        return '5px';
-      } else if (window.innerWidth <= 768) {
-        return '8px';
-      } else if (window.innerWidth <= 992) {
-        return '10px';
-      } else {
-        return '15px';
-      }
-    };
-
+    // Don't apply special positioning on tablet/mobile
+    if (isTabletOrMobile) {
+      return {};
+    }
+    
+    // For desktop only
     if (isSticky) {
       // Fully sticky
       return {
-        top: getTopValue(), 
+        top: '15px', 
         transform: 'none'
       };
     } else if (scrollProgress > 0) {
@@ -92,8 +99,8 @@ function Navigation({ activeSection, handleSectionChange }) {
       
       // If we're close to sticky, use px instead of % for smoother transition to final position
       if (scrollProgress > 0.9) {
-        const finalTop = getTopValue().replace('px', '');
-        const top = ((1 - (1 - scrollProgress) * 10) * parseInt(finalTop)) + 'px';
+        const finalTop = 15; // px
+        const top = ((1 - (1 - scrollProgress) * 10) * finalTop) + 'px';
         
         return {
           top: top,
@@ -117,7 +124,7 @@ function Navigation({ activeSection, handleSectionChange }) {
 
   return (
     <nav 
-      className={`portfolio-nav ${isSticky ? 'sticky' : ''}`} 
+      className={`portfolio-nav ${isSticky && !isTabletOrMobile ? 'sticky' : ''}`} 
       style={getNavStyle()}
       aria-label="Portfolio sections"
     >

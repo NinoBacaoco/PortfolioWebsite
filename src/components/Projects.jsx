@@ -1,5 +1,10 @@
 import { useEffect, forwardRef } from 'react';
 import '../styles/Projects.css';
+import ProjectImageFallback from './ProjectImageFallback';
+
+// Import the real project images
+import thumbnail from '../assets/projects/thumbnail.png';
+import spotselectLogin from '../assets/projects/spotselectLogin.png';
 
 const Projects = forwardRef(({ isInView }, ref) => {
   // Initialize animations when component comes into view
@@ -7,7 +12,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
     if (isInView && ref.current) {
       const titleElement = ref.current.querySelector('.section-title');
       const categoryTitles = ref.current.querySelectorAll('.category-title');
-      const projectCards = ref.current.querySelectorAll('.project-card, .college-card');
+      const projectCards = ref.current.querySelectorAll('.project-card');
       
       // Reset and restart animations for section title
       if (titleElement) {
@@ -49,7 +54,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
         });
       }
       
-      // Animate project cards with staggered delay - similar to about section's skill cards
+      // Animate project cards with staggered delay
       if (projectCards.length) {
         projectCards.forEach((card, index) => {
           // Remove animation class first
@@ -60,38 +65,12 @@ const Projects = forwardRef(({ isInView }, ref) => {
           // Force reflow
           void card.offsetWidth;
           
-          const isCollegeCard = card.classList.contains('college-card');
-          
           // Add animation class with staggered delay
           setTimeout(() => {
             card.classList.add('animate');
             card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-            
-            // For college cards, animate the internal content with translation
-            if (isCollegeCard) {
-              const contentElements = [
-                card.querySelector('.college-content h3'),
-                card.querySelector('.college-date'),
-                card.querySelector('.college-content p:not(.college-date)'),
-                card.querySelector('.college-tags'),
-                card.querySelector('.college-links')
-              ].filter(el => el !== null); // Filter out any null elements
-              
-              // Animate content elements with staggered delays
-              contentElements.forEach((element, contentIndex) => {
-                element.classList.remove('animate');
-                
-                // Force reflow
-                void element.offsetWidth;
-                
-                // Staggered animation based on index
-                setTimeout(() => {
-                  element.classList.add('animate');
-                }, 200 + (contentIndex * 100));
-              });
-            }
           }, 1500 + (index * 150));
         });
       }
@@ -114,66 +93,11 @@ const Projects = forwardRef(({ isInView }, ref) => {
         {/* Academic Projects */}
         <div className="projects-category">
           <h3 className="category-title">Academic Projects</h3>
-          <div className="college-grid">
-             <div className="project-card glow-on-hover">
-              <div className="project-content">
-                <h3>Task Management App</h3>
-                <p className="college-date">Fall 2022</p>
-                <p>Full-stack task manager with authentication, task categories, and collaborative features.</p>
-                <div className="project-tech">
-                  <span>React</span>
-                  <span>Node.js</span>
-                  <span>MongoDB</span>
-                </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
-                </div>
+           <div className="projects-grid">
+            <div className="project-card">
+              <div className="project-image">
+                <img src={thumbnail} alt="Portfolio Website" />
               </div>
-            </div>
-            
-             <div className="project-card glow-on-hover">
-              <div className="project-content">
-                <h3>Task Management App</h3>
-                <p className="college-date">Fall 2022</p>
-                <p>Full-stack task manager with authentication, task categories, and collaborative features.</p>
-                <div className="project-tech">
-                  <span>React</span>
-                  <span>Node.js</span>
-                  <span>MongoDB</span>
-                </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
-                </div>
-              </div>
-            </div>
-            
-              
-            <div className="project-card glow-on-hover">
-              <div className="project-content">
-                <h3>Task Management App</h3>
-                <p className="college-date">Fall 2022</p>
-                <p>Full-stack task manager with authentication, task categories, and collaborative features.</p>
-                <div className="project-tech">
-                  <span>React</span>
-                  <span>Node.js</span>
-                  <span>MongoDB</span>
-                </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Personal Projects */}
-        <div className="projects-category">
-          <h3 className="category-title">Personal Projects</h3>
-          <div className="projects-grid">
-            <div className="project-card glow-on-hover">
               <div className="project-content">
                 <h3>Portfolio Website</h3>
                 <p>Modern responsive portfolio with React, featuring smooth animations and a dark theme.</p>
@@ -189,7 +113,10 @@ const Projects = forwardRef(({ isInView }, ref) => {
               </div>
             </div>
             
-            <div className="project-card glow-on-hover">
+            <div className="project-card">
+              <div className="project-image">
+                <img src={spotselectLogin} alt="Task Management App" />
+              </div>
               <div className="project-content">
                 <h3>Task Management App</h3>
                 <p>Full-stack task manager with authentication, task categories, and collaborative features.</p>
@@ -205,7 +132,79 @@ const Projects = forwardRef(({ isInView }, ref) => {
               </div>
             </div>
             
-            <div className="project-card glow-on-hover">
+            <div className="project-card">
+              {/* For this card, we'll use the fallback since we only have 2 images */}
+              <ProjectImageFallback 
+                title="Weather Dashboard"
+                color1="#fb5607"
+                color2="#ffbe0b"
+              />
+              <div className="project-content">
+                <h3>Weather Dashboard</h3>
+                <p>Interactive weather app with real-time data, forecast visualization, and location search.</p>
+                <div className="project-tech">
+                  <span>JavaScript</span>
+                  <span>OpenWeather API</span>
+                  <span>Chart.js</span>
+                </div>
+                <div className="project-links">
+                  <a href="#" className="btn-link">Live Demo</a>
+                  <a href="#" className="btn-link">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Personal Projects */}
+        <div className="projects-category">
+          <h3 className="category-title">Personal Projects</h3>
+          <div className="projects-grid">
+            <div className="project-card">
+              <div className="project-image">
+                <img src={thumbnail} alt="Portfolio Website" />
+              </div>
+              <div className="project-content">
+                <h3>Portfolio Website</h3>
+                <p>Modern responsive portfolio with React, featuring smooth animations and a dark theme.</p>
+                <div className="project-tech">
+                  <span>React</span>
+                  <span>CSS</span>
+                  <span>Vite</span>
+                </div>
+                <div className="project-links">
+                  <a href="#" className="btn-link">Live Demo</a>
+                  <a href="#" className="btn-link">GitHub</a>
+                </div>
+              </div>
+            </div>
+            
+            <div className="project-card">
+              <div className="project-image">
+                <img src={spotselectLogin} alt="Task Management App" />
+              </div>
+              <div className="project-content">
+                <h3>Task Management App</h3>
+                <p>Full-stack task manager with authentication, task categories, and collaborative features.</p>
+                <div className="project-tech">
+                  <span>React</span>
+                  <span>Node.js</span>
+                  <span>MongoDB</span>
+                </div>
+                <div className="project-links">
+                  <a href="#" className="btn-link">Live Demo</a>
+                  <a href="#" className="btn-link">GitHub</a>
+                </div>
+              </div>
+            </div>
+            
+            <div className="project-card">
+              {/* For this card, we'll use the fallback since we only have 2 images */}
+              <ProjectImageFallback 
+                title="Weather Dashboard"
+                color1="#fb5607"
+                color2="#ffbe0b"
+              />
               <div className="project-content">
                 <h3>Weather Dashboard</h3>
                 <p>Interactive weather app with real-time data, forecast visualization, and location search.</p>

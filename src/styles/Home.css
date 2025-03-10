@@ -7,8 +7,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh; /* Ensure it takes full viewport height */
   box-sizing: border-box;
+  padding: 2rem 1rem;
 }
 
 .home-bg {
@@ -23,7 +23,7 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  padding: 0;
+  padding: 2rem;
   max-width: 1200px;
   position: relative;
   text-align: center;
@@ -57,7 +57,7 @@
 }
 
 .home-container .title {
-  font-size: 10vw;
+  font-size: clamp(3rem, 8vw, 8rem);
   font-weight: 900;
   color: var(--text-primary);
   margin: 0 0 1rem 0;
@@ -72,9 +72,9 @@
 }
 
 .home-container .name {
-  font-size: 4.5vw;
+  font-size: clamp(2.5rem, 4vw, 5rem);
   font-weight: 900;
-  line-height: 0.9;
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: #ff9900;
   margin: 1rem 0 0 0;
@@ -91,7 +91,7 @@
 }
 
 .home-container .role {
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
   font-weight: 400;
   color: var(--text-secondary);
   margin: 1rem 0;
@@ -105,6 +105,7 @@
   width: 100%;
   font-style: italic;
   will-change: transform, opacity;
+  flex-wrap: wrap;
 }
 
 .home-container .name-wrapper {
@@ -115,6 +116,8 @@
   border-radius: 8px;
   box-shadow: none;
   margin: 1rem 0;
+  width: 100%;
+  max-width: 600px;
 }
 
 .home-container .glowing-underline {
@@ -127,10 +130,11 @@
   box-shadow: 0 0 10px rgba(255, 153, 0, 0.7);
   will-change: width, opacity;
   transition: opacity 0.4s ease-out, width 0.5s ease-out, box-shadow 0.4s ease-out;
+  max-width: 100%;
 }
 
 .home-container .header-year {
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
   font-weight: 400;
   color: var(--text-secondary);
   position: relative; 
@@ -175,7 +179,7 @@
     opacity: 0.6;
   }
   100% {
-    width: 180px;
+    width: min(180px, 80%);
     opacity: 1;
   }
 }
@@ -188,7 +192,6 @@
   }
 
   .home-container .name {
-    font-size: 4.2vw;
     transform: translateY(20px);
     animation: fadeInUp 0.8s ease-out forwards 0.3s;
   }
@@ -199,18 +202,11 @@
 }
 
 @media (max-width: 768px) {
-  .home-container .name {
-    font-size: 3.8vw;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease-out forwards 0.3s;
-  }
-  
   .home-container {
     padding: 0 5vw;
   }
   
   .home-container .role {
-    font-size: 1rem;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 4vh;
@@ -224,10 +220,8 @@
 }
 
 @media (max-width: 576px) {
-  .home-container .name {
-    font-size: 8vw;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease-out forwards 0.3s;
+  .home-container .name-wrapper {
+    max-width: 90%;
   }
   
   .home-container .glowing-underline {
@@ -242,7 +236,7 @@
     width: 0;
   }
   to {
-    width: 140px;
+    width: min(140px, 80%);
   }
 }
 
@@ -251,6 +245,44 @@
     width: 0;
   }
   to {
-    width: 100px;
+    width: min(120px, 90%);
+  }
+}
+
+/* Additional styles for better responsiveness */
+@media (max-height: 700px) {
+  .home-container {
+    padding: 1rem;
+  }
+  
+  .home-container .title {
+    margin-bottom: 0.5rem;
+  }
+  
+  .home-container .role {
+    margin: 0.5rem 0;
+  }
+  
+  .home-container .name-wrapper {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Add a media query for zoom levels */
+@media (max-width: 400px), (max-height: 600px) {
+  .home-container .title {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+  
+  .home-container .name {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
+  
+  .home-container .role {
+    font-size: 0.9rem;
+  }
+  
+  .home-container .header-year {
+    font-size: 1rem;
   }
 } 
