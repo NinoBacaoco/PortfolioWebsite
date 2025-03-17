@@ -1,4 +1,4 @@
-import { useEffect, forwardRef } from 'react';
+import { useEffect, forwardRef, useState } from 'react';
 import '../styles/Projects.css';
 import ProjectImageFallback from './ProjectImageFallback';
 
@@ -7,6 +7,32 @@ import thumbnail from '../assets/projects/thumbnail.png';
 import spotselectLogin from '../assets/projects/spotselectLogin.png';
 
 const Projects = forwardRef(({ isInView }, ref) => {
+  const [expandedCards, setExpandedCards] = useState({});
+
+  const toggleCard = (cardId) => {
+    setExpandedCards(prev => {
+      const newState = {
+        ...prev,
+        [cardId]: !prev[cardId]
+      };
+      
+      // If we're expanding the card, scroll it into view
+      if (newState[cardId]) {
+        setTimeout(() => {
+          const cardElement = document.getElementById(`project-${cardId}`);
+          if (cardElement) {
+            cardElement.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'nearest'
+            });
+          }
+        }, 100); // Small delay to ensure the content has expanded
+      }
+      
+      return newState;
+    });
+  };
+
   // Initialize animations when component comes into view
   useEffect(() => {
     if (isInView && ref.current) {
@@ -94,62 +120,97 @@ const Projects = forwardRef(({ isInView }, ref) => {
         <div className="projects-category">
           <h3 className="category-title">Academic Projects</h3>
            <div className="projects-grid">
-            <div className="project-card">
+            <div className="project-card" id="project-academic-1">
               <div className="project-image">
                 <img src={thumbnail} alt="Portfolio Website" />
               </div>
-              <div className="project-content">
-                <h3>Portfolio Website</h3>
-                <p>Modern responsive portfolio with React, featuring smooth animations and a dark theme.</p>
-                <div className="project-tech">
-                  <span>React</span>
-                  <span>CSS</span>
-                  <span>Vite</span>
+              <div className={`project-content ${expandedCards['academic-1'] ? 'expanded' : ''}`}>
+                <h3>PORTFOREADY <span className="subheading">Student Portfolio & Job Matching Platform</span></h3>
+                <div className="project-summary">
+                  <div className="project-role">
+                    <span className="role-label">Role:</span>
+                    <span className="role-value">UI/UX Designer</span>
+                  </div>
+                  <div className="project-objective">
+                    <span className="objective-label">Objective:</span>
+                    <p className="objective-value">Enhancing the job search experience for students through an intuitive and user-friendly portfolio platform.</p>
+                  </div>
+                  <div className="project-achievements">
+                    <h4>Key Achievements:</h4>
+                    <ul>
+                      <li>Designed wireframes and interactive prototypes to optimize user experience.</li>
+                      <li>Conducted user research to understand student needs and pain points in job searching.</li>
+                      <li>Conducted usability testing and iterated designs based on feedback for improved user experience.</li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
+                <div className="project-sections">
+                  <div className="project-tech">
+                    <span>React</span>
+                    <span>CSS</span>
+                    <span>Vite</span>
+                  </div>
+                  <div className="project-links">
+                    <a href="#" className="btn-link">Live Demo</a>
+                    <a href="#" className="btn-link">GitHub</a>
+                  </div>
+                </div>
+                <div className="see-more-container">
+                  <button 
+                    className="see-more-btn"
+                    onClick={() => toggleCard('academic-1')}
+                  >
+                    {expandedCards['academic-1'] ? 'See Less' : 'See More'}
+                    <span className="icon">▼</span>
+                  </button>
                 </div>
               </div>
             </div>
-            
-            <div className="project-card">
+            <div className="project-card" id="project-academic-2">
               <div className="project-image">
-                <img src={spotselectLogin} alt="Task Management App" />
+                <img src={spotselectLogin} alt="Portfolio Website" />
               </div>
-              <div className="project-content">
-                <h3>Task Management App</h3>
-                <p>Full-stack task manager with authentication, task categories, and collaborative features.</p>
-                <div className="project-tech">
-                  <span>React</span>
-                  <span>Node.js</span>
-                  <span>MongoDB</span>
+              <div className={`project-content ${expandedCards['academic-2'] ? 'expanded' : ''}`}>
+                <h3>SPOTSELECT <span className="subheading">Incubatee Application Review and Selection Process</span></h3>
+                <div className="project-summary">
+                  <div className="project-role">
+                    <span className="role-label">Role:</span>
+                    <span className="role-value">UI/UX Designer</span>
+                    <span className="role-value">Frontend Developer</span>
+                  </div>
+                  <div className="project-objective">
+                    <span className="objective-label">Objective:</span>
+                    <p className="objective-value">Streamlining the evaluation and selection process for startup incubation.</p>
+                  </div>
+                  <div className="project-achievements">
+                    <h4>Key Achievements:</h4>
+                    <ul>
+                      <li>Designed wireframes and prototypes.</li>
+                      <li>Developed frontend components using Thymeleaf, HTML5, Tailwind CSS, Bootstrap and JavaScript.</li>
+                      <li>Collaborated with the backend team for seamless data integration.</li>
+                      <li>Conducted usability testing; refined based on feedback.</li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
+                <div className="project-sections">
+                  <div className="project-tech">
+                    <span>React</span>
+                    <span>CSS</span>
+                    <span>Vite</span>
+                  </div>
+                  <div className="project-links">
+                    <a href="#" className="btn-link">Live Demo</a>
+                    <a href="#" className="btn-link">GitHub</a>
+                  </div>
                 </div>
-              </div>
-            </div>
-            
-            <div className="project-card">
-              {/* For this card, we'll use the fallback since we only have 2 images */}
-              <ProjectImageFallback 
-                title="Weather Dashboard"
-                color1="#fb5607"
-                color2="#ffbe0b"
-              />
-              <div className="project-content">
-                <h3>Weather Dashboard</h3>
-                <p>Interactive weather app with real-time data, forecast visualization, and location search.</p>
-                <div className="project-tech">
-                  <span>JavaScript</span>
-                  <span>OpenWeather API</span>
-                  <span>Chart.js</span>
-                </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
+                <div className="see-more-container">
+                  <button 
+                    className="see-more-btn"
+                    onClick={() => toggleCard('academic-2')}
+                  >
+                    {expandedCards['academic-2'] ? 'See Less' : 'See More'}
+                    <span className="icon">▼</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -160,62 +221,49 @@ const Projects = forwardRef(({ isInView }, ref) => {
         <div className="projects-category">
           <h3 className="category-title">Personal Projects</h3>
           <div className="projects-grid">
-            <div className="project-card">
+            <div className="project-card" id="project-personal-1">
               <div className="project-image">
                 <img src={thumbnail} alt="Portfolio Website" />
               </div>
-              <div className="project-content">
-                <h3>Portfolio Website</h3>
-                <p>Modern responsive portfolio with React, featuring smooth animations and a dark theme.</p>
-                <div className="project-tech">
-                  <span>React</span>
-                  <span>CSS</span>
-                  <span>Vite</span>
+              <div className={`project-content ${expandedCards['personal-1'] ? 'expanded' : ''}`}>
+                <h3>PORTFOLIO WEBSITE <span className="subheading">Personal Developer Portfolio</span></h3>
+                <div className="project-summary">
+                  <div className="project-role">
+                    <span className="role-label">Role:</span>
+                    <span className="role-value">Frontend Developer</span>
+                  </div>
+                  <div className="project-objective">
+                    <span className="objective-label">Objective:</span>
+                    <p className="objective-value">Creating an interactive portfolio to showcase my skills and projects.</p>
+                  </div>
+                  <div className="project-achievements">
+                    <h4>Key Achievements:</h4>
+                    <ul>
+                      <li>Designed and implemented responsive UI using React and CSS animations.</li>
+                      <li>Created interactive elements and smooth transitions for enhanced user experience.</li>
+                      <li>Optimized performance and accessibility.</li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
+                <div className="project-sections">
+                  <div className="project-tech">
+                    <span>React</span>
+                    <span>CSS</span>
+                    <span>Vite</span>
+                  </div>
+                  <div className="project-links">
+                    <a href="#" className="btn-link">Live Demo</a>
+                    <a href="#" className="btn-link">GitHub</a>
+                  </div>
                 </div>
-              </div>
-            </div>
-            
-            <div className="project-card">
-              <div className="project-image">
-                <img src={spotselectLogin} alt="Task Management App" />
-              </div>
-              <div className="project-content">
-                <h3>Task Management App</h3>
-                <p>Full-stack task manager with authentication, task categories, and collaborative features.</p>
-                <div className="project-tech">
-                  <span>React</span>
-                  <span>Node.js</span>
-                  <span>MongoDB</span>
-                </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
-                </div>
-              </div>
-            </div>
-            
-            <div className="project-card">
-              {/* For this card, we'll use the fallback since we only have 2 images */}
-              <ProjectImageFallback 
-                title="Weather Dashboard"
-                color1="#fb5607"
-                color2="#ffbe0b"
-              />
-              <div className="project-content">
-                <h3>Weather Dashboard</h3>
-                <p>Interactive weather app with real-time data, forecast visualization, and location search.</p>
-                <div className="project-tech">
-                  <span>JavaScript</span>
-                  <span>OpenWeather API</span>
-                  <span>Chart.js</span>
-                </div>
-                <div className="project-links">
-                  <a href="#" className="btn-link">Live Demo</a>
-                  <a href="#" className="btn-link">GitHub</a>
+                <div className="see-more-container">
+                  <button 
+                    className="see-more-btn"
+                    onClick={() => toggleCard('personal-1')}
+                  >
+                    {expandedCards['personal-1'] ? 'See Less' : 'See More'}
+                    <span className="icon">▼</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -226,4 +274,4 @@ const Projects = forwardRef(({ isInView }, ref) => {
   );
 });
 
-export default Projects; 
+export default Projects;

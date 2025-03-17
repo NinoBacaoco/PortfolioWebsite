@@ -73,52 +73,6 @@
   box-shadow: 0 0 8px rgba(157, 78, 221, 0.6);
 }
 
-/* Project Images */
-.project-image {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  position: relative;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.05);
-}
-
-/* Add overlay gradient */
-.project-image::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40%;
-  background: linear-gradient(to top, rgba(30, 30, 30, 0.9), transparent);
-  z-index: 1;
-}
-
-/* ProjectImageFallback component zoom effects */
-.project-card:hover .project-image-fallback .bg-zoom {
-  transform: scale(1.08);
-}
-
-.project-card:hover .project-image-fallback .pattern-overlay {
-  transform: scale(1.05) rotate(1deg);
-}
-
-.project-card:hover .project-image-fallback h3 {
-  transform: scale(1.03);
-}
-
 /* Unified Project Card Styles */
 .project-card {
   border-radius: 16px;
@@ -130,7 +84,8 @@
   opacity: 0;
   transform: translateY(20px);
   will-change: opacity, transform, box-shadow, transform;
-  height: 100%;
+  width: 100%; /* Ensure full width */
+  height: 480px; /* Fixed height for collapsed state */
   display: flex;
   flex-direction: column;
 }
@@ -178,22 +133,270 @@
   opacity: 0; /* Ensure the glow effect is not visible on hover */
 }
 
-/* Project content */
+/* Project Images - Standardize to consistent size */
+.project-image {
+  width: 100%;
+  height: 200px; /* Fixed height for all images */
+  flex: 0 0 200px; /* Don't grow or shrink, fixed height */
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  position: relative;
+  background-color: var(--card-bg); /* Fallback background */
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This ensures images cover the area without distortion */
+  transition: transform 0.5s ease;
+  display: block; /* Removes any potential spacing issues */
+}
+
+/* ProjectImageFallback component styles */
+.project-image-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(255, 153, 0, 0.05));
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image-fallback .bg-zoom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(157, 78, 221, 0.1), rgba(255, 153, 0, 0.05));
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+.project-image-fallback .pattern-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 1px 1px, rgba(157, 78, 221, 0.1) 1px, transparent 0);
+  background-size: 20px 20px;
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+.project-image-fallback h3 {
+  position: relative;
+  z-index: 1;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 0 1rem;
+  transition: transform 0.5s ease;
+}
+
+/* Hover effects */
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-card:hover .project-image-fallback .bg-zoom {
+  transform: scale(1.08);
+}
+
+.project-card:hover .project-image-fallback .pattern-overlay {
+  transform: scale(1.05) rotate(1deg);
+}
+
+.project-card:hover .project-image-fallback h3 {
+  transform: scale(1.03);
+}
+
+/* Add overlay gradient */
+.project-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(30, 30, 30, 0.9), transparent);
+  z-index: 1;
+}
+
+/* Project content section - holds all text content */
 .project-content {
   padding: 1.5rem;
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Allow content to expand */
+  flex: 1 1 auto; /* grow, shrink, auto basis */
+  overflow: hidden; /* Prevent content overflow in collapsed state */
 }
 
+/* Make expanded content adapt to content height */
+.project-content.expanded {
+  overflow: visible; /* Allow content to expand in expanded state */
+}
+
+/* Project title and subheading styles */
 .project-content h3 {
+  margin: 0;
   font-size: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.project-content h3 .subheading {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+
+/* Project summary style */
+.project-summary {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0.75rem 0 1rem;
+  flex-grow: 0; /* Don't allow summary to expand */
+}
+
+/* Project Role Styles */
+.project-role {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.role-label {
+  font-weight: 600;
+  color: var(--accent-primary);
+  font-size: 0.9rem;
+  white-space: nowrap; /* Prevent label from wrapping */
+}
+
+.role-value {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(157, 78, 221, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(157, 78, 221, 0.2);
+  white-space: nowrap; /* Prevent role text from wrapping */
+  display: inline-block; /* Ensure proper alignment */
+  text-align: center; /* Center text in capsule */
+}
+
+/* Project Objective Styles */
+.project-objective {
+  margin: 0.5rem 0;
+}
+
+.objective-label {
+  font-weight: 600;
+  color: var(--accent-primary);
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.objective-value {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Project sections container */
+.project-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: none;
+  transform: none;
+  pointer-events: none;
+  width: 100%; /* Ensure full width */
+}
+
+.project-content.expanded .project-sections {
+  opacity: 1;
+  max-height: none; /* Allow natural height based on content */
+  transform: none;
+  margin-top: 0.5rem;
+  pointer-events: auto;
+  width: 100%; /* Ensure full width */
+}
+
+/* Project content list styles */
+.project-summary ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.5rem;
+}
+
+.project-summary ul li {
   margin-bottom: 0.5rem;
-  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  line-height: 1.5;
+}
+
+.project-summary ul li:last-child {
+  margin-bottom: 0;
+}
+
+/* Project Achievements Styles */
+.project-achievements {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: none;
+  transform: none;
+  pointer-events: none;
+  width: 100%; /* Ensure full width */
+}
+
+.project-content.expanded .project-achievements {
+  opacity: 1;
+  max-height: none; /* Allow natural height based on content */
+  transform: none;
+  pointer-events: auto;
+  width: 100%; /* Ensure full width */
+}
+
+.project-achievements h4 {
+  color: var(--accent-primary);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.project-achievements ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style-type: disc; /* Added bullet points */
+}
+
+.project-achievements li {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1rem; /* Added padding for bullet points */
+}
+
+.project-achievements li:last-child {
+  margin-bottom: 0;
 }
 
 /* Date container for centering */
@@ -229,18 +432,12 @@
   box-shadow: 0 4px 12px rgba(157, 78, 221, 0.15);
 }
 
-.project-content p {
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
-}
-
 /* Tech tags */
 .project-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  margin-top: auto; /* Push to bottom of flex container */
+  margin: 0.75rem 0;
 }
 
 .project-tech span {
@@ -260,6 +457,7 @@
 .project-links {
   display: flex;
   gap: 1rem;
+  margin: 0.75rem 0;
 }
 
 .btn-link {
@@ -304,6 +502,7 @@
   margin-top: 2rem;
   width: 100%;
   justify-content: center;
+  align-items: start; /* This helps prevent layout shifts */
 }
 
 /* Media Queries */
@@ -319,6 +518,17 @@
   .college-grid {
     grid-template-columns: 1fr;
   }
+  .project-card {
+    height: 480px; /* Slightly taller on mobile for better content fit */
+  }
+  
+  .project-content {
+    height: calc(100% - 200px); /* Maintain proportional content area */
+  }
+  
+  .project-content.expanded {
+    min-height: calc(100% - 200px); /* Maintain proportional content area */
+  }
 }
 
 @media (max-width: 576px) {
@@ -326,4 +536,118 @@
   .college-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* Space between collapsed content and see more button */
+.project-content:not(.expanded) .project-summary {
+  margin-bottom: auto; /* Push the see more button down when collapsed */
+}
+
+/* See More Button Container */
+.see-more-container {
+  position: absolute;
+  bottom: -60px; /* Position it below the card initially */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--card-bg); 
+  transition: transform 0.3s ease-out;
+  z-index: 3;
+  box-shadow: 0 4px 15px rgba(200, 49, 49, 0.1); 
+  margin-bottom: 4px;
+}
+
+.project-card:hover .see-more-container {
+  transform: translateY(-60px); /* Move up by exact height to align with bottom */
+}
+
+.project-card:has(.project-content.expanded) .see-more-container {
+  position: relative;
+  bottom: 0;
+  transform: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* See More Button */
+.see-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  background: rgba(157, 78, 221, 0.1);
+  border: 2px solid var(--accent-primary);
+  color: var(--accent-primary);
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 3;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(157, 78, 221, 0.15);
+  width: auto;
+  min-width: 120px;
+}
+
+.project-card {
+  overflow: visible;
+}
+
+.see-more-btn:hover {
+  background: rgba(157, 78, 221, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(157, 78, 221, 0.25);
+  border-color: var(--accent-secondary);
+}
+
+.see-more-btn:active {
+  transform: translateY(0);
+}
+
+.see-more-btn .icon {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.8rem;
+  display: inline-block;
+  line-height: 1;
+}
+
+.project-content.expanded .see-more-btn .icon {
+  transform: rotate(180deg);
+}
+
+/* Ensure smooth transitions - REMOVE THESE TRANSITIONS */
+.project-content[class*="expanded"],
+.project-content[class*="expanded"]::after,
+.project-content[class*="expanded"] .see-more-btn,
+.project-content[class*="expanded"] .project-achievements,
+.project-content[class*="expanded"] .project-tech,
+.project-content[class*="expanded"] .project-links {
+  transition: none; /* Remove all transitions */
+}
+
+/* Adjust for expanded state */
+.project-card:has(.project-content.expanded) {
+  height: max-content;/* Auto height when expanded */
+  min-height: 450px; /* Minimum height same as collapsed */
+}
+
+/* Ensure consistent spacing between image and content */
+.project-image + .project-content {
+  padding-top: 1rem; /* Consistent padding at top */
+}
+
+/* Remove redundant container class - consolidate with project-image */
+.project-image-container {
+  display: none; /* Hide this class as we're using project-image directly */
+}
+
+/* Ensure image container is directly above content, with no gaps */
+.project-card .project-image + .project-content {
+  margin-top: 0; /* Remove any margin between image and content */
+  border-top: none; /* Remove any border between image and content */
 } 
