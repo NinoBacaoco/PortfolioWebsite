@@ -55,7 +55,7 @@
 }
 
 .category-title::after {
-  content: '';
+  content: "";
   position: absolute;
   height: 3px;
   width: 0; /* Start with no width */
@@ -114,7 +114,7 @@
 
 /* Remove glow effect */
 .project-card.glow-on-hover::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 1;
   top: 0;
@@ -138,7 +138,7 @@
   width: 100%;
   height: 200px; /* Fixed height for all images */
   flex: 0 0 200px; /* Don't grow or shrink, fixed height */
-  overflow: hidden; 
+  overflow: hidden;
   position: relative;
   background-color: var(--card-bg); /* Fallback background */
 }
@@ -158,7 +158,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(255, 153, 0, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(157, 78, 221, 0.1),
+    rgba(255, 153, 0, 0.05)
+  );
   position: relative;
   overflow: hidden;
 }
@@ -169,7 +173,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, rgba(157, 78, 221, 0.1), rgba(255, 153, 0, 0.05));
+  background: linear-gradient(
+    45deg,
+    rgba(157, 78, 221, 0.1),
+    rgba(255, 153, 0, 0.05)
+  );
   transform-origin: center;
   transition: transform 0.5s ease;
 }
@@ -180,7 +188,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(circle at 1px 1px, rgba(157, 78, 221, 0.1) 1px, transparent 0);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(157, 78, 221, 0.1) 1px,
+    transparent 0
+  );
   background-size: 20px 20px;
   transform-origin: center;
   transition: transform 0.5s ease;
@@ -215,7 +227,7 @@
 
 /* Add overlay gradient */
 .project-image::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -412,7 +424,11 @@
   margin-bottom: 0.5rem;
   display: inline-block; /* Important for "hug" width behavior */
   padding: 0.25rem 0.8rem;
-  background: linear-gradient(45deg, rgba(157, 78, 221, 0.15), rgba(255, 153, 0, 0.1));
+  background: linear-gradient(
+    45deg,
+    rgba(157, 78, 221, 0.15),
+    rgba(255, 153, 0, 0.1)
+  );
   border-radius: 20px;
   border: 1px solid rgba(157, 78, 221, 0.2);
   transition: all 0.3s ease;
@@ -425,7 +441,11 @@
 }
 
 .project-card:hover .college-date {
-  background: linear-gradient(45deg, rgba(157, 78, 221, 0.2), rgba(255, 153, 0, 0.15));
+  background: linear-gradient(
+    45deg,
+    rgba(157, 78, 221, 0.2),
+    rgba(255, 153, 0, 0.15)
+  );
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(157, 78, 221, 0.15);
 }
@@ -473,7 +493,7 @@
 }
 
 .btn-link::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -493,7 +513,8 @@
 }
 
 /* Grids */
-.projects-grid, .college-grid {
+.projects-grid,
+.college-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
@@ -519,11 +540,11 @@
   .project-card {
     height: 480px; /* Slightly taller on mobile for better content fit */
   }
-  
+
   .project-content {
     height: calc(100% - 200px); /* Maintain proportional content area */
   }
-  
+
   .project-content.expanded {
     min-height: calc(100% - 200px); /* Maintain proportional content area */
   }
@@ -544,29 +565,47 @@
 /* See More Button Container */
 .see-more-container {
   position: absolute;
-  bottom: -65px; /* Position it below the card initially */
+  bottom: -5px; /* Position it below the card initially */
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 1rem;
-  background: var(--card-bg); 
+  background: var(--card-bg);
   transition: transform 0.3s ease-out;
   z-index: 3;
-  box-shadow: 0 4px 15px rgba(200, 49, 49, 0.1); 
-  margin-bottom: 4px; 
+  box-shadow: 0 4px 15px rgba(200, 49, 49, 0.1);
+  margin-bottom: 4px;
+  opacity: 0;
 }
 
 .project-card:hover .see-more-container {
-  transform: translateY(-65px); /* Move up by exact height to align with bottom */
+  opacity: 1; /* Keep fully visible */
+  transform: translateY(
+    -5px
+  ); /* Move up by exact height to align with bottom */
 }
 
+/* For expanded cards, position the container differently */
 .project-card:has(.project-content.expanded) .see-more-container {
-  position: relative;
-  bottom: 0;
-  transform: none;
-  background: transparent;
-  box-shadow: none;
+  position: absolute;
+  bottom: -5px; /* Position it below the card initially */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--card-bg);
+  transition: transform 0.3s ease-out;
+  box-shadow: 0 4px 15px rgba(200, 49, 49, 0.1);
+  margin-bottom: 4px;
+  opacity: 0;
+}
+
+/* Apply the same hover effect for expanded cards */
+.project-card:has(.project-content.expanded):hover .see-more-container {
+  transform: translateY(-5px); /* Same slide-up effect on hover */
+  opacity: 1;
 }
 
 /* See More Button */
@@ -630,7 +669,7 @@
 
 /* Adjust for expanded state */
 .project-card:has(.project-content.expanded) {
-  height: max-content;/* Auto height when expanded */
+  height: 900px; /* Auto height when expanded */
   min-height: 450px; /* Minimum height same as collapsed */
 }
 
@@ -648,4 +687,4 @@
 .project-card .project-image + .project-content {
   margin-top: 0; /* Remove any margin between image and content */
   border-top: none; /* Remove any border between image and content */
-} 
+}
