@@ -3,8 +3,10 @@ import "../styles/Projects.css";
 import ProjectImageFallback from "./ProjectImageFallback";
 
 // Import the real project images
+import dailyuithumbnail from "../assets/projects/dailyuithumbnail.png";
 import thumbnail from "../assets/projects/thumbnail.png";
 import spotselectLogin from "../assets/projects/spotselectLogin.png";
+import illustrationWorkAtSymph from "../assets/projects/illustrationWorkAtSymph.png";
 
 const Projects = forwardRef(({ isInView }, ref) => {
   const [expandedCards, setExpandedCards] = useState({});
@@ -123,7 +125,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
         <div className="projects-category">
           <h3 className="category-title">Academic Projects</h3>
           <div className="projects-grid">
-            <div className="project-card" id="project-academic-1" >
+            <div className="project-card" id="project-academic-1">
               <div className="project-image">
                 <img src={thumbnail} alt="Portfolio Website" />
               </div>
@@ -133,7 +135,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
                 }`}
               >
                 <h3>
-                  PORTFOREADY{" "}
+                  PORTFOREADY
                   <span className="subheading">
                     Student Portfolio & Job Matching Platform
                   </span>
@@ -170,16 +172,14 @@ const Projects = forwardRef(({ isInView }, ref) => {
                 </div>
                 <div className="project-sections">
                   <div className="project-tech">
-                    <span>React</span>
-                    <span>CSS</span>
-                    <span>Vite</span>
+                    <span>Figma</span>
                   </div>
                   <div className="project-links">
-                    <a href="#" className="btn-link">
-                      Live Demo
+                    <a href="https://figma.fun/ElO8Es" className="btn-link" target="_blank">
+                      View File
                     </a>
-                    <a href="#" className="btn-link">
-                      GitHub
+                    <a href="https://figma.fun/RR5aaX" className="btn-link" target="_blank">
+                      View Prototype
                     </a>
                   </div>
                 </div>
@@ -242,16 +242,19 @@ const Projects = forwardRef(({ isInView }, ref) => {
                 </div>
                 <div className="project-sections">
                   <div className="project-tech">
-                    <span>React</span>
-                    <span>CSS</span>
-                    <span>Vite</span>
+                    <span>JavaScript</span>
+                    <span>Thymeleaf</span>
+                    <span>HTML/CSS</span>
+                    <span>TailwindCSS</span>
+                    <span>Bootstrap</span>
+                    <span>Figma</span>
                   </div>
                   <div className="project-links">
-                    <a href="#" className="btn-link">
-                      Live Demo
+                    <a href="https://figma.fun/Vv556d" className="btn-link" target="_blank">
+                      View File
                     </a>
-                    <a href="#" className="btn-link">
-                      GitHub
+                    <a href="https://figma.fun/WFZFNT" className="btn-link" target="_blank">
+                      View Prototype
                     </a>
                   </div>
                 </div>
@@ -269,73 +272,145 @@ const Projects = forwardRef(({ isInView }, ref) => {
           </div>
         </div>
 
-        {/* Personal Projects */}
+        {/* Internship Projects */}
         <div className="projects-category">
-          <h3 className="category-title">Personal Projects</h3>
+          <h3 className="category-title">
+            Internship Projects<span className="company-name">@Symph Inc.</span>
+          </h3>
           <div className="projects-grid">
-            <div className="project-card" id="project-personal-1">
+            <div className="project-card" id="project-internship-1">
               <div className="project-image">
-                <img src={thumbnail} alt="Portfolio Website" />
+                <img
+                  src={dailyuithumbnail}
+                  alt="DailyUI Challenges Thumbnail"
+                />
               </div>
               <div
                 className={`project-content ${
-                  expandedCards["personal-1"] ? "expanded" : ""
+                  expandedCards["internship-1"] ? "expanded" : ""
                 }`}
               >
                 <h3>
-                  PORTFOLIO WEBSITE{" "}
-                  <span className="subheading">
-                    Personal Developer Portfolio
-                  </span>
+                  DailyUI Challenges{" "}
+                  <span className="subheading">3-Week Design Bootcamp</span>
                 </h3>
                 <div className="project-summary">
                   <div className="project-role">
                     <span className="role-label">Role:</span>
-                    <span className="role-value">Frontend Developer</span>
+                    <span className="role-value">UI/UX Designer</span>
                   </div>
                   <div className="project-objective">
                     <span className="objective-label">Objective:</span>
                     <p className="objective-value">
-                      Creating an interactive portfolio to showcase my skills
-                      and projects.
+                      In this 3-week bootcamp, I re/designed mobile and web
+                      interfaces in Figma, focusing on creating interactive
+                      prototypes and applying UI/UX design principles.{" "}
                     </p>
                   </div>
                   <div className="project-achievements">
                     <h4>Key Achievements:</h4>
                     <ul>
                       <li>
-                        Designed and implemented responsive UI using React and
-                        CSS animations.
+                        Designed and created web and mobile interfaces in Figma.
                       </li>
                       <li>
-                        Created interactive elements and smooth transitions for
-                        enhanced user experience.
+                        Developed interactive prototypes to demonstrate user
+                        flows and interactions.
                       </li>
-                      <li>Optimized performance and accessibility.</li>
+                      <li>
+                        Focused on enhancing design usability and creating
+                        intuitive user experiences.
+                      </li>
                     </ul>
                   </div>
                 </div>
                 <div className="project-sections">
                   <div className="project-tech">
-                    <span>React</span>
-                    <span>CSS</span>
-                    <span>Vite</span>
+                    <span>Figma</span>
                   </div>
                   <div className="project-links">
                     <a href="#" className="btn-link">
-                      Live Demo
-                    </a>
-                    <a href="#" className="btn-link">
-                      GitHub
+                      Figma Link
                     </a>
                   </div>
                 </div>
                 <div className="see-more-container">
                   <button
                     className="see-more-btn"
-                    onClick={() => toggleCard("personal-1")}
+                    onClick={() => toggleCard("internship-1")}
                   >
-                    {expandedCards["personal-1"] ? "See Less" : "See More"}
+                    {expandedCards["internship-1"] ? "See Less" : "See More"}
+                    <span className="icon">▼</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="project-card" id="project-internship-2">
+              <div className="project-image">
+                <img
+                  src={illustrationWorkAtSymph}
+                  alt="Illustration Work At Symph"
+                />
+              </div>
+              <div
+                className={`project-content ${
+                  expandedCards["internship-2"] ? "expanded" : ""
+                }`}
+              >
+                <h3>
+                  Illustration Design
+                  <span className="subheading">
+                    Assisted in Creating Illustration Design
+                  </span>
+                </h3>
+                <div className="project-summary">
+                  <div className="project-role">
+                    <span className="role-label">Role:</span>
+                    <span className="role-value">Designer</span>
+                  </div>
+                  <div className="project-objective">
+                    <span className="objective-label">Objective:</span>
+                    <p className="objective-value">
+                      I assisted in creating a landscape illustration for a
+                      webpage interface, focusing on designing background and
+                      environmental elements to enhance the user experience.
+                    </p>
+                  </div>
+                  <div className="project-achievements">
+                    <h4>Key Achievements:</h4>
+                    <ul>
+                      <li>
+                        Designed a landscape-style illustration for the webpage
+                        interface using Adobe Illustrator.
+                      </li>
+                      <li>
+                        Created visual assets for mockups, ensuring seamless
+                        integration with the design.
+                      </li>
+                      <li>
+                        Maintained visual consistency and usability to enhance
+                        the webpage's aesthetics.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="project-sections">
+                  <div className="project-tech">
+                    <span>Figma</span>
+                    <span>Adobe Illustrator</span>
+                  </div>
+                  <div className="project-links">
+                    <a href="#" className="btn-link">
+                      View Illustration
+                    </a>
+                  </div>
+                </div>
+                <div className="see-more-container">
+                  <button
+                    className="see-more-btn"
+                    onClick={() => toggleCard("internship-2")}
+                  >
+                    {expandedCards["internship-2"] ? "See Less" : "See More"}
                     <span className="icon">▼</span>
                   </button>
                 </div>

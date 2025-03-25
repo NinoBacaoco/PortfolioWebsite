@@ -49,6 +49,17 @@
   will-change: transform;
 }
 
+.company-name {
+  font-size: 0.8em;
+  color: #05a6ff; /* Using your theme color from the placeholder images */
+  font-weight: 900;
+  margin-left: 8px;
+  opacity: 100%;
+  position: absolute;
+  top: -10%;
+  left: 25%;
+}
+
 /* Animation class for category title */
 .category-title.animate {
   transform: translateY(0); /* Move to final position */
@@ -275,7 +286,7 @@
   color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;
-  margin: 0.75rem 0 1rem;
+  margin: 0;
   flex-grow: 0; /* Don't allow summary to expand */
 }
 
@@ -297,7 +308,7 @@
 
 .role-value {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   padding: 0.25rem 0.75rem;
   background: rgba(157, 78, 221, 0.1);
   border-radius: 20px;
