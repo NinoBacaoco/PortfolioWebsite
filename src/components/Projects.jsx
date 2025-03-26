@@ -7,7 +7,7 @@ import dailyuithumbnail from "../assets/projects/dailyuithumbnail.png";
 import thumbnail from "../assets/projects/thumbnail.png";
 import spotselectLogin from "../assets/projects/spotselectLogin.png";
 import illustrationWorkAtSymph from "../assets/projects/illustrationWorkAtSymph.png";
-import appGenDashboard from "../assets/projects/appGenDashboard.png";
+import appGenSpaceDashboard from "../assets/projects/appGenDashboard.png";
 
 const Projects = forwardRef(({ isInView }, ref) => {
   const [expandedCards, setExpandedCards] = useState({});
@@ -439,7 +439,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
             </div>
             <div className="project-card" id="project-internship-3">
               <div className="project-image">
-                <img src={appGenDashboard} alt="Interface Redesign" />
+                <img src={appGenSpaceDashboard} alt="Interface Redesign" />
               </div>
               <div
                 className={`project-content ${
