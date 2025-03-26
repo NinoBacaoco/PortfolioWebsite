@@ -7,6 +7,7 @@ import dailyuithumbnail from "../assets/projects/dailyuithumbnail.png";
 import thumbnail from "../assets/projects/thumbnail.png";
 import spotselectLogin from "../assets/projects/spotselectLogin.png";
 import illustrationWorkAtSymph from "../assets/projects/illustrationWorkAtSymph.png";
+import appGenDashboard from "../assets/projects/appGenDashboard.png";
 
 const Projects = forwardRef(({ isInView }, ref) => {
   const [expandedCards, setExpandedCards] = useState({});
@@ -175,10 +176,18 @@ const Projects = forwardRef(({ isInView }, ref) => {
                     <span>Figma</span>
                   </div>
                   <div className="project-links">
-                    <a href="https://figma.fun/ElO8Es" className="btn-link" target="_blank">
+                    <a
+                      href="https://figma.fun/ElO8Es"
+                      className="btn-link"
+                      target="_blank"
+                    >
                       View File
                     </a>
-                    <a href="https://figma.fun/RR5aaX" className="btn-link" target="_blank">
+                    <a
+                      href="https://figma.fun/RR5aaX"
+                      className="btn-link"
+                      target="_blank"
+                    >
                       View Prototype
                     </a>
                   </div>
@@ -250,10 +259,18 @@ const Projects = forwardRef(({ isInView }, ref) => {
                     <span>Figma</span>
                   </div>
                   <div className="project-links">
-                    <a href="https://figma.fun/Vv556d" className="btn-link" target="_blank">
+                    <a
+                      href="https://figma.fun/Vv556d"
+                      className="btn-link"
+                      target="_blank"
+                    >
                       View File
                     </a>
-                    <a href="https://figma.fun/WFZFNT" className="btn-link" target="_blank">
+                    <a
+                      href="https://figma.fun/WFZFNT"
+                      className="btn-link"
+                      target="_blank"
+                    >
                       View Prototype
                     </a>
                   </div>
@@ -345,7 +362,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
                 </div>
               </div>
             </div>
-            <div className="project-card" id="project-internship-2">
+            <div className="project-card" id="project-internship-3">
               <div className="project-image">
                 <img
                   src={illustrationWorkAtSymph}
@@ -400,7 +417,11 @@ const Projects = forwardRef(({ isInView }, ref) => {
                     <span>Adobe Illustrator</span>
                   </div>
                   <div className="project-links">
-                    <a href="#" className="btn-link">
+                    <a
+                      href="https://figma.fun/lsR5Ej"
+                      className="btn-link"
+                      target="_blank"
+                    >
                       View Illustration
                     </a>
                   </div>
@@ -411,6 +432,84 @@ const Projects = forwardRef(({ isInView }, ref) => {
                     onClick={() => toggleCard("internship-2")}
                   >
                     {expandedCards["internship-2"] ? "See Less" : "See More"}
+                    <span className="icon">▼</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="project-card" id="project-internship-3">
+              <div className="project-image">
+                <img src={appGenDashboard} alt="Interface Redesign" />
+              </div>
+              <div
+                className={`project-content ${
+                  expandedCards["internship-3"] ? "expanded" : ""
+                }`}
+              >
+                <h3>
+                  AppGen Space Interface Redesign
+                  <span className="subheading">
+                    Dashboard Interface Redesign
+                  </span>
+                </h3>
+                <div className="project-summary">
+                  <div className="project-role">
+                    <span className="role-label">Role:</span>
+                    <span className="role-value">UI/UX Designer</span>
+                  </div>
+                  <div className="project-objective">
+                    <span className="objective-label">Objective:</span>
+                    <p className="objective-value">
+                      Redesigned the AppGen Space interface, focusing on
+                      lo-fi/hi-fi designs, prototyping, and improving the
+                      dashboard.
+                    </p>
+                  </div>
+                  <div className="project-achievements">
+                    <h4>Key Achievements:</h4>
+                    <ul>
+                      <li>
+                        Redesigned the AppGen Space interface with both lo-fi
+                        and hi-fi mockups.
+                      </li>
+                      <li>
+                        Created interactive prototypes to demonstrate the flow
+                        and user interactions within the app.
+                      </li>
+                      <li>
+                        Focused primarily on the dashboard interface, ensuring
+                        it was intuitive and visually appealing.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="project-sections">
+                  <div className="project-tech">
+                    <span>Figma</span>
+                  </div>
+                  <div className="project-links">
+                    <a
+                      href="https://figma.fun/3COMr2"
+                      className="btn-link"
+                      target="_blank"
+                    >
+                      View File
+                    </a>
+                    <a
+                      href="https://figma.fun/0Gv7CP"
+                      className="btn-link"
+                      target="_blank"
+                    >
+                      View Prototype
+                    </a>
+                  </div>
+                </div>
+                <div className="see-more-container">
+                  <button
+                    className="see-more-btn"
+                    onClick={() => toggleCard("internship-3")}
+                  >
+                    {expandedCards["internship-3"] ? "See Less" : "See More"}
                     <span className="icon">▼</span>
                   </button>
                 </div>
