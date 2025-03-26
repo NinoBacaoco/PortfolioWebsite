@@ -7,7 +7,7 @@ import dailyuithumbnail from "../assets/projects/dailyuithumbnail.png";
 import thumbnail from "../assets/projects/thumbnail.png";
 import spotselectLogin from "../assets/projects/spotselectLogin.png";
 import illustrationWorkAtSymph from "../assets/projects/illustrationWorkAtSymph.png";
-import appGenSpaceDashboard from "../assets/projects/appGenDashboard.png";
+import appGenSpaceDashboard from "../assets/projects/appGenSpaceDashboard.png";
 
 const Projects = forwardRef(({ isInView }, ref) => {
   const [expandedCards, setExpandedCards] = useState({});
