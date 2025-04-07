@@ -346,8 +346,16 @@ const Projects = forwardRef(({ isInView }, ref) => {
                     <span>Figma</span>
                   </div>
                   <div className="project-links">
-                    <a href="#" className="btn-link">
-                      Figma Link
+                    <a 
+                      href="#dailyui" 
+                      className="btn-link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        history.pushState(null, null, '#dailyui');
+                        window.dispatchEvent(new HashChangeEvent('hashchange'));
+                      }}
+                    >
+                      View All Designs
                     </a>
                   </div>
                 </div>
