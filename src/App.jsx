@@ -7,11 +7,13 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Firefly from './components/Firefly'
 import DailyUIDesigns from './components/DailyUIDesigns'
+import Loader from './components/Loader'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showDailyUI, setShowDailyUI] = useState(false)
+  const [loading, setLoading] = useState(true)
   
   // Add refs for each section to enable scrolling
   const homeRef = useRef(null)
@@ -30,6 +32,16 @@ function App() {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
     }
+  }, [])
+  
+  // Add loading state management
+  useEffect(() => {
+    // Simulate loading time to ensure assets are loaded
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 1500)
+    
+    return () => clearTimeout(timer)
   }, [])
   
   // Initialize section visibility and handle scroll events to update the active section
@@ -196,36 +208,42 @@ function App() {
 
   return (
     <div className="portfolio">
-      {/* Light effect that follows cursor */}
-      <div 
-        className="cursor-glow"
-        style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y}px`
-        }}
-      ></div>
-      
-      {/* Firefly animation with fixed positioning */}
-      <Firefly count={15} />
-      
-      {/* Show either the main portfolio or DailyUI designs page */}
-      {showDailyUI ? (
-        <DailyUIDesigns />
+      {loading ? (
+        <Loader />
       ) : (
         <>
-          {/* Portfolio Navigation */}
-          <Navigation 
-            activeSection={activeSection} 
-            handleSectionChange={handleSectionChange} 
-          />
+          {/* Light effect that follows cursor */}
+          <div 
+            className="cursor-glow"
+            style={{
+              left: `${mousePosition.x}px`,
+              top: `${mousePosition.y}px`
+            }}
+          ></div>
           
-          {/* Main content - all sections are now part of one continuous scroll */}
-          <main>
-            <Home ref={homeRef} isInView={activeSection === 'home'} />
-            <Projects ref={projectsRef} isInView={activeSection === 'projects'} />
-            <About ref={aboutRef} isInView={activeSection === 'about'} />
-            <Contact ref={contactRef} isInView={activeSection === 'contact'} />
-          </main>
+          {/* Firefly animation with fixed positioning */}
+          <Firefly count={15} />
+          
+          {/* Show either the main portfolio or DailyUI designs page */}
+          {showDailyUI ? (
+            <DailyUIDesigns />
+          ) : (
+            <>
+              {/* Portfolio Navigation */}
+              <Navigation 
+                activeSection={activeSection} 
+                handleSectionChange={handleSectionChange} 
+              />
+              
+              {/* Main content - all sections are now part of one continuous scroll */}
+              <main>
+                <Home ref={homeRef} isInView={activeSection === 'home'} />
+                <Projects ref={projectsRef} isInView={activeSection === 'projects'} />
+                <About ref={aboutRef} isInView={activeSection === 'about'} />
+                <Contact ref={contactRef} isInView={activeSection === 'contact'} />
+              </main>
+            </>
+          )}
         </>
       )}
     </div>

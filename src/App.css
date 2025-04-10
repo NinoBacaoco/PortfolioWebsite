@@ -6,6 +6,7 @@
 @import url("./styles/About.css");
 @import url("./styles/Contact.css");
 @import url("./styles/Firefly.css"); /* Import Firefly styles */
+@import url("./styles/Loader.css"); /* Import Loader styles */
 
 /* Import fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap");
