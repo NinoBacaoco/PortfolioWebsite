@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import "../styles/ImageModal.css";
 
+// Store scroll outside component (shared across re-renders)
+let previousScrollY = 0;
+
 const ImageModal = ({ isOpen, imageUrl, onClose }) => {
   const [zoomLevel, setZoomLevel] = useState(1);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [imgSrc, setImgSrc] = useState('');
   const [isClosing, setIsClosing] = useState(false);
 
-  // Set image source when imageUrl changes
+  // Set image src from string or imported image
   useEffect(() => {
     if (imageUrl) {
       if (typeof imageUrl === 'string') {
@@ -18,7 +21,7 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
     }
   }, [imageUrl]);
 
-  // Handle zoom functionality
+  // Handle image zoom
   const handleImageClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -30,7 +33,6 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
       const rect = image.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
-
       setZoomPosition({ x, y });
       setZoomLevel(2.5);
     } else {
@@ -39,21 +41,24 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
     }
   };
 
-  // Custom close with animation and scroll restoration
+  // 🔥 Modal Close with scroll restore
   const handleClose = () => {
-    const scrollY = parseInt(document.body.style.top || '0') * -1;
-
-    // Restore scroll before unmounting
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.height = '';
-
     setIsClosing(true);
+
+    // Remove scroll lock styles
+    document.body.style.removeProperty('position');
+    document.body.style.removeProperty('top');
+    document.body.style.removeProperty('width');
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('height');
+
+    // Scroll back to original position
+    window.scrollTo(0, previousScrollY);
+
     setTimeout(() => {
       setIsClosing(false);
       onClose();
-    }, 300); // Sync with your CSS animation
+    }, 300);
   };
 
   // Reset zoom when modal reopens
@@ -65,25 +70,29 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
     }
   }, [isOpen, imageUrl]);
 
-  // Prevent background scroll when modal is open
+  // 🔒 Lock scroll when modal opens
   useEffect(() => {
-    const preventDefault = (e) => e.preventDefault();
-
     if (isOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-      document.body.style.height = '100%';
+      previousScrollY = window.scrollY;
 
-      window.addEventListener('wheel', preventDefault, { passive: false });
-      window.addEventListener('touchmove', preventDefault, { passive: false });
+      // Lock the body at current scroll position
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${previousScrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100%';
     }
 
     return () => {
-      window.removeEventListener('wheel', preventDefault);
-      window.removeEventListener('touchmove', preventDefault);
-      // No scroll restoration here anymore
+      // Restore scroll manually here too in case of unmount
+      if (!isOpen) {
+        document.body.style.removeProperty('position');
+        document.body.style.removeProperty('top');
+        document.body.style.removeProperty('width');
+        document.body.style.removeProperty('overflow');
+        document.body.style.removeProperty('height');
+        window.scrollTo(0, previousScrollY);
+      }
     };
   }, [isOpen]);
 
@@ -128,11 +137,14 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
             className="modal-image"
             style={{
               transform: `scale(${zoomLevel})`,
-              transformOrigin: zoomLevel > 1 ? `${zoomPosition.x}% ${zoomPosition.y}%` : 'center center',
+              transformOrigin:
+                zoomLevel > 1
+                  ? `${zoomPosition.x}% ${zoomPosition.y}%`
+                  : 'center center',
               maxHeight: '90vh',
-              maxWidth: '90vw'
+              maxWidth: '90vw',
             }}
-            title={zoomLevel === 1 ? "Click to zoom in" : "Click to zoom out"}
+            title={zoomLevel === 1 ? 'Click to zoom in' : 'Click to zoom out'}
           />
         </div>
       </div>
