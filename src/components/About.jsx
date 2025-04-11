@@ -63,8 +63,8 @@ const About = forwardRef(({ isInView }, ref) => {
   }, [isInView]);
 
   return (
-    <section className="about-section parallax-section" ref={ref} id="about">
-      <div className="parallax-bg about-bg"></div>
+    <section className="about-section" ref={ref} id="about">
+      <div className="about-bg"></div>
       <div className="section-content">
         <div className="section-header">
           <div className="big-number">02</div>

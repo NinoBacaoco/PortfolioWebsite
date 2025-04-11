@@ -79,11 +79,11 @@ const Contact = forwardRef(({ isInView }, ref) => {
 
   return (
     <section 
-      className="contact-section parallax-section" 
+      className="contact-section" 
       ref={ref} 
       id="contact"
     >
-      <div className="parallax-bg contact-bg"></div>
+      <div className="contact-bg"></div>
       <div className="section-content">
         <div className="section-header">
           <div className="big-number">03</div>

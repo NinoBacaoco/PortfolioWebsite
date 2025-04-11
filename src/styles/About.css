@@ -10,8 +10,8 @@
 }
 
 .about-bg {
-  background: linear-gradient(135deg, #141414, #1f1f1f);
-  opacity: 0.7;
+  background-color: #111320; /* Distinct dark indigo-tinted background */
+  opacity: 0.9;
 }
 
 .about-content {
@@ -55,6 +55,7 @@
   margin: 2rem 0 1rem;
   font-size: 1.8rem;
   background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   opacity: 0;

@@ -66,11 +66,11 @@ const Home = forwardRef(({ isInView }, ref) => {
 
   return (
     <section 
-      className="home-section parallax-section" 
+      className="home-section" 
       ref={ref} 
       id="home"
     >
-      <div className="parallax-bg home-bg"></div>
+      <div className="home-bg"></div>
       <div className="section-content home-container">
         <div className="main-content">
           <div className="header-year">2025</div>

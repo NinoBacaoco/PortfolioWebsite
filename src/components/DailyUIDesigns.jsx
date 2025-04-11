@@ -33,7 +33,7 @@ import dailyui26 from "../assets/images/26.png";
 import dailyui27 from "../assets/images/27.png";
 import dailyui28 from "../assets/images/28.png";
 import dailyui29 from "../assets/images/29.png";
-import dailyui30 from "../assets/images/29.png";
+import dailyui30 from "../assets/images/30.png";
 
 // You can replace this with actual design thumbnails when available
 const DailyUIDesigns = () => {
@@ -199,8 +199,8 @@ const DailyUIDesigns = () => {
         figmaPrototype: "https://figma.fun/qxlTYn"
       },
       30: {
-        figmaFile: "https://figma.fun/Y0w6x7",
-        figmaPrototype: "https://figma.fun/XeXWyd"
+        figmaFile: "https://figma.fun/brmAro",
+        figmaPrototype: "https://figma.fun/dIMv4Z"
       },
     };
     
@@ -339,36 +339,36 @@ const DailyUIDesigns = () => {
 // Helper function to provide descriptions for each design day
 function getDescriptionForDay(day) {
   const descriptions = {
-    1: "Sign Up Page - lorem ipsum",
-    2: "Credit Card Checkout - lorem ipsum",
-    3: "Landing Page - lorem ipsum",
-    4: "Calculator - lorem ipsum",
-    5: "App Icon - lorem ipsum",
-    6: "User Profile - lorem ipsum",
-    7: "Settings - lorem ipsum",
-    8: "404 Page - lorem ipsum",
-    9: "Music Player - lorem ipsum",
-    10: "Social Share - lorem ipsum",
-    11: "Flash Message - lorem ipsum",
-    12: "E-Commerce Shop - lorem ipsum",
-    13: "Direct Messaging - lorem ipsum",
-    14: "Countdown Timer - lorem ipsum",
-    15: "On/Off Switch - lorem ipsum",
-    16: "Pop-Up Overlay - lorem ipsum",
-    17: "Purchase Receipt - lorem ipsum",
-    18: "Analytics Chart - lorem ipsum",
-    19: "Leaderboard - lorem ipsum",
-    20: "Location Tracker - lorem ipsum",
-    21: "Home Monitoring Dashboard - lorem ipsum",
-    22: "Search Interface - lorem ipsum",
-    23: "Onboarding Experience - lorem ipsum",
-    24: "Boarding Pass - lorem ipsum",
-    25: "TV App Interface - lorem ipsum",
-    26: "Subscribe Form - lorem ipsum",
-    27: "Dropdown Menu - lorem ipsum",
-    28: "Contact Form - lorem ipsum",
-    29: "Map Design - lorem ipsum",
-    30: "Pricing - lorem ipsum"
+    1: "Sign Up Page - Duolingo mobile sign-up recreation",
+    2: "Credit Card Checkout - Duolingo mobile checkout recreation",
+    3: "Landing Page - Pinterest web layout recreation",
+    4: "Calculator - Simple mobile calculator redesign",
+    5: "App Icon - Valorant logo recreation",
+    6: "User Profile - Steam profile page recreation",
+    7: "Settings - PayPal settings page redesign",
+    8: "404 Page - Duolingo web 404 page recreation",
+    9: "Music Player - Basic music player UI",
+    10: "Social Share - Simple share button UI",
+    11: "Flash Message - Minimal alert component",
+    12: "E-Commerce Shop - Redragon product page recreation",
+    13: "Direct Messaging - Steam messaging UI recreation",
+    14: "Countdown Timer - Pomofocus timer UI recreation",
+    15: "On/Off Switch - Sun/night toggle switch",
+    16: "Pop-Up Overlay - Glossier web modal recreation",
+    17: "Purchase Receipt - SHEIN mobile receipt recreation",
+    18: "Analytics Chart - Duolingo/Gmail parallax chart recreation",
+    19: "Leaderboard - Duolingo mobile leaderboard redesign",
+    20: "Location Tracker - Mobile tracker with direction animation",
+    21: "Home Monitoring Dashboard - Neobrutalist web dashboard",
+    22: "Search Interface - Custom filterable search UI",
+    23: "Onboarding Experience - Simple step-by-step onboarding",
+    24: "Boarding Pass - Minimal mobile boarding pass",
+    25: "TV App Interface - Web TV layout recreation",
+    26: "Subscribe Form - Gradient glassmorphism form",
+    27: "Dropdown Menu - Steam profile dropdown recreation",
+    28: "Contact Form - Glassy gradient contact form",
+    29: "Map Design - Cyber-themed dark world map",
+    30: "Pricing - Cloud storage pricing table"
   };
   
   return descriptions[day] || "UI Design - A creative UI design solution for a daily challenge.";

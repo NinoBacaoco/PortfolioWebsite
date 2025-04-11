@@ -14,23 +14,49 @@ const Projects = forwardRef(({ isInView }, ref) => {
 
   const toggleCard = (cardId) => {
     setExpandedCards((prev) => {
+      const isExpanding = !prev[cardId]; // Check if we're expanding or collapsing
       const newState = {
         ...prev,
-        [cardId]: !prev[cardId],
+        [cardId]: isExpanding,
       };
 
-      // If we're expanding the card, scroll it into view
-      if (newState[cardId]) {
-        setTimeout(() => {
-          const cardElement = document.getElementById(`project-${cardId}`);
-          if (cardElement) {
-            cardElement.scrollIntoView({
-              behavior: "smooth",
-              block: "nearest",
-            });
+      // Different scroll behavior based on whether expanding or collapsing
+      setTimeout(() => {
+        const cardElement = document.getElementById(`project-${cardId}`);
+        if (cardElement) {
+          if (isExpanding) {
+            // When expanding, scroll to the h3 heading
+            const headingElement = cardElement.querySelector('h3');
+            if (headingElement) {
+              headingElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            } else {
+              // Fallback to card
+              cardElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          } else {
+            // When collapsing, scroll to the project image
+            const imageElement = cardElement.querySelector('.project-image');
+            if (imageElement) {
+              imageElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            } else {
+              // Fallback to card
+              cardElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
           }
-        }, 100); // Small delay to ensure the content has expanded
-      }
+        }
+      }, 150); // Small delay to ensure the DOM has updated
 
       return newState;
     });
@@ -113,7 +139,6 @@ const Projects = forwardRef(({ isInView }, ref) => {
       ref={ref}
       id="projects"
     >
-      <div className="parallax-bg projects-bg"></div>
       <div className="section-content">
         <div className="section-header">
           <div className="big-number">01</div>
@@ -370,7 +395,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
                 </div>
               </div>
             </div>
-            <div className="project-card" id="project-internship-3">
+            <div className="project-card" id="project-internship-2">
               <div className="project-image">
                 <img
                   src={illustrationWorkAtSymph}
