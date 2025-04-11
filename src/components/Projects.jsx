@@ -12,6 +12,8 @@ import appGenSpaceDashboard from "../assets/projects/appGenSpaceDashboard.png";
 const Projects = forwardRef(({ isInView }, ref) => {
   const [expandedCards, setExpandedCards] = useState({});
 
+
+
   const toggleCard = (cardId) => {
     setExpandedCards((prev) => {
       const isExpanding = !prev[cardId]; // Check if we're expanding or collapsing
@@ -153,7 +155,12 @@ const Projects = forwardRef(({ isInView }, ref) => {
           <div className="projects-grid">
             <div className="project-card" id="project-academic-1">
               <div className="project-image">
-                <img src={thumbnail} alt="Portfolio Website" />
+                <img 
+                  src={thumbnail} 
+                  alt="Portfolio Website" 
+                  className="clickable-image"
+
+                />
               </div>
               <div
                 className={`project-content ${
@@ -230,7 +237,12 @@ const Projects = forwardRef(({ isInView }, ref) => {
             </div>
             <div className="project-card" id="project-academic-2">
               <div className="project-image">
-                <img src={spotselectLogin} alt="Portfolio Website" />
+                <img 
+                  src={spotselectLogin} 
+                  alt="Portfolio Website" 
+                  className="clickable-image"
+
+                />
               </div>
               <div
                 className={`project-content ${
@@ -325,6 +337,8 @@ const Projects = forwardRef(({ isInView }, ref) => {
                 <img
                   src={dailyuithumbnail}
                   alt="DailyUI Challenges Thumbnail"
+                  className="clickable-image"
+
                 />
               </div>
               <div
@@ -400,6 +414,8 @@ const Projects = forwardRef(({ isInView }, ref) => {
                 <img
                   src={illustrationWorkAtSymph}
                   alt="Illustration Work At Symph"
+                  className="clickable-image"
+
                 />
               </div>
               <div
@@ -472,7 +488,12 @@ const Projects = forwardRef(({ isInView }, ref) => {
             </div>
             <div className="project-card" id="project-internship-3">
               <div className="project-image">
-                <img src={appGenSpaceDashboard} alt="Interface Redesign" />
+                <img 
+                  src={appGenSpaceDashboard} 
+                  alt="Interface Redesign" 
+                  className="clickable-image"
+
+                />
               </div>
               <div
                 className={`project-content ${
@@ -551,6 +572,8 @@ const Projects = forwardRef(({ isInView }, ref) => {
           </div>
         </div>
       </div>
+
+
     </section>
   );
 });

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "../styles/DailyUIDesigns.css";
 import ProjectImageFallback from "./ProjectImageFallback";
+import ImageModal from "./ImageModal";
 
 // Import design thumbnails for DailyUI challenges
 // Replace these with actual design thumbnails
@@ -38,6 +39,9 @@ import dailyui30 from "../assets/images/30.png";
 // You can replace this with actual design thumbnails when available
 const DailyUIDesigns = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
   
   // Get the design images
   const getDesignImage = (index) => {
@@ -228,6 +232,24 @@ const DailyUIDesigns = () => {
     };
   });
   
+  // Image preview modal handlers
+  const openModal = (image) => {
+    console.log('DailyUI - Opening modal with image:', image);
+    // Save current scroll position before opening modal
+    setScrollPosition(window.pageYOffset || document.documentElement.scrollTop);
+    setSelectedImage(image);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    console.log('DailyUI - Closing modal');
+    setModalOpen(false);
+    // Manually restore scroll position after modal closes
+    setTimeout(() => {
+      window.scrollTo(0, scrollPosition);
+    }, 10);
+  };
+  
   // Back button handler - returns to projects section
   const handleBackClick = () => {
     // Navigate to projects section
@@ -241,6 +263,8 @@ const DailyUIDesigns = () => {
       }
     }, 50);
   };
+  
+
   
   // Animation effect when component mounts
   useEffect(() => {
@@ -297,7 +321,12 @@ const DailyUIDesigns = () => {
           >
             <div className="design-image">
               {design.image ? (
-                <img src={design.image} alt={design.title} />
+                <img 
+                  src={design.image} 
+                  alt={design.title} 
+                  onClick={() => openModal(design.image)}
+                  className="clickable-image"
+                />
               ) : (
                 <ProjectImageFallback text={design.title} />
               )}
@@ -332,6 +361,15 @@ const DailyUIDesigns = () => {
           </div>
         ))}
       </div>
+
+      {/* Using the reusable ImageModal component */}
+      {modalOpen && selectedImage && (
+        <ImageModal 
+          isOpen={modalOpen} 
+          imageUrl={selectedImage} 
+          onClose={closeModal} 
+        />
+      )}
     </section>
   );
 };
