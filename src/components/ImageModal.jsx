@@ -1,15 +1,35 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import "../styles/ImageModal.css";
 
-// Store scroll outside component (shared across re-renders)
-let previousScrollY = 0;
+// Helper for scroll locking
+const lockScroll = () => {
+  // Save the current scroll position
+  const scrollY = window.scrollY;
+  
+  // Add inline styles to body to lock at current position
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.width = '100%';
+  
+  // Return a function to unlock scroll
+  return () => {
+    // Restore the original styles
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    
+    // Restore scroll position
+    window.scrollTo(0, scrollY);
+  };
+};
 
 const ImageModal = ({ isOpen, imageUrl, onClose }) => {
   const [zoomLevel, setZoomLevel] = useState(1);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [imgSrc, setImgSrc] = useState('');
   const [isClosing, setIsClosing] = useState(false);
-
+  
   // Set image src from string or imported image
   useEffect(() => {
     if (imageUrl) {
@@ -41,24 +61,13 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
     }
   };
 
-  // 🔥 Modal Close with scroll restore
+  // Modal Close with scroll restore
   const handleClose = () => {
     setIsClosing(true);
-
-    // Remove scroll lock styles
-    document.body.style.removeProperty('position');
-    document.body.style.removeProperty('top');
-    document.body.style.removeProperty('width');
-    document.body.style.removeProperty('overflow');
-    document.body.style.removeProperty('height');
-
-    // Scroll back to original position
-    window.scrollTo(0, previousScrollY);
-
     setTimeout(() => {
       setIsClosing(false);
       onClose();
-    }, 300);
+    }, 200);
   };
 
   // Reset zoom when modal reopens
@@ -70,29 +79,16 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
     }
   }, [isOpen, imageUrl]);
 
-  // 🔒 Lock scroll when modal opens
+  // Lock scroll when modal opens, unlock when it closes
   useEffect(() => {
+    let unlockScroll;
+    
     if (isOpen) {
-      previousScrollY = window.scrollY;
-
-      // Lock the body at current scroll position
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${previousScrollY}px`;
-      document.body.style.width = '100%';
-      document.body.style.overflow = 'hidden';
-      document.body.style.height = '100%';
+      unlockScroll = lockScroll();
     }
-
+    
     return () => {
-      // Restore scroll manually here too in case of unmount
-      if (!isOpen) {
-        document.body.style.removeProperty('position');
-        document.body.style.removeProperty('top');
-        document.body.style.removeProperty('width');
-        document.body.style.removeProperty('overflow');
-        document.body.style.removeProperty('height');
-        window.scrollTo(0, previousScrollY);
-      }
+      if (unlockScroll) unlockScroll();
     };
   }, [isOpen]);
 
@@ -113,9 +109,11 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
     };
   }, [isOpen]);
 
+  // Don't render anything if modal is not open and not closing
   if (!isOpen && !isClosing) return null;
-
-  return (
+  
+  // Use createPortal to render modal outside normal DOM flow
+  return createPortal(
     <div
       className={`image-modal-overlay ${isClosing ? 'closing' : ''}`}
       onClick={handleClose}
@@ -148,7 +146,8 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => {
           />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body // Render directly to the body
   );
 };
 

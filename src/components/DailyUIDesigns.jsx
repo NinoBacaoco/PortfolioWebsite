@@ -41,7 +41,6 @@ const DailyUIDesigns = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
   
   // Get the design images
   const getDesignImage = (index) => {
@@ -235,8 +234,6 @@ const DailyUIDesigns = () => {
   // Image preview modal handlers
   const openModal = (image) => {
     console.log('DailyUI - Opening modal with image:', image);
-    // Save current scroll position before opening modal
-    setScrollPosition(window.pageYOffset || document.documentElement.scrollTop);
     setSelectedImage(image);
     setModalOpen(true);
   };
@@ -244,10 +241,6 @@ const DailyUIDesigns = () => {
   const closeModal = () => {
     console.log('DailyUI - Closing modal');
     setModalOpen(false);
-    // Manually restore scroll position after modal closes
-    setTimeout(() => {
-      window.scrollTo(0, scrollPosition);
-    }, 10);
   };
   
   // Back button handler - returns to projects section
