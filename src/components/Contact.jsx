@@ -83,7 +83,6 @@ const Contact = forwardRef(({ isInView }, ref) => {
       ref={ref} 
       id="contact"
     >
-      <div className="contact-bg"></div>
       <div className="section-content">
         <div className="section-header">
           <div className="big-number">03</div>

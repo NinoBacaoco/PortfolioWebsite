@@ -10,9 +10,10 @@ const Home = forwardRef(({ isInView }, ref) => {
       const titleElement = ref.current.querySelector('.title');
       const roleElement = ref.current.querySelector('.role');
       const headerYearElement = ref.current.querySelector('.header-year');
+      const resumeContainerElement = ref.current.querySelector('.resume-container');
       
       // Reset all animations first
-      [headerYearElement, titleElement, roleElement, nameElement, underlineElement].forEach(el => {
+      [headerYearElement, titleElement, roleElement, nameElement, underlineElement, resumeContainerElement].forEach(el => {
         if (el) {
           el.style.animation = 'none';
           el.style.opacity = '0';
@@ -61,6 +62,14 @@ const Home = forwardRef(({ isInView }, ref) => {
           roleElement.style.transform = 'translateY(0)';
         }
       }, 650);
+      
+      setTimeout(() => {
+        if (resumeContainerElement) {
+          resumeContainerElement.style.animation = 'fadeInUp 0.7s ease-out forwards';
+          resumeContainerElement.style.opacity = '1';
+          resumeContainerElement.style.transform = 'translateY(0)';
+        }
+      }, 800);
     }
   }, [isInView]);
 
@@ -87,6 +96,10 @@ const Home = forwardRef(({ isInView }, ref) => {
               <h1 className="name" data-text="JOHN DOE">Niño Bacaoco</h1>
               <div className="glowing-underline"></div>
             </div>
+          </div>
+          
+          <div className="resume-container">
+            <a href="https://drive.google.com/drive/u/0/folders/1uICHHfQDRRuC1_T_WJJAobZRI70GIId4" className="resume-btn" target="_blank" rel="noopener noreferrer">VIEW RESUME</a>
           </div>
         </div>
       </div>
