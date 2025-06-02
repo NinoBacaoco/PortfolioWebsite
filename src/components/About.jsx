@@ -75,14 +75,27 @@ const About = forwardRef(({ isInView }, ref) => {
 
         <div className="about-content">
           <div className="about-text">
-            <p>
-              Hello! I'm Niño Bacaoco, an Information Technology student with
-              experience in front-end development and UI/UX design. Experienced
-              in designing user-centered web interfaces, creating wireframes,
-              prototyping, and conducting usability testing to ensure the
-              delivery of high-quality, accessible digital solutions.
-            </p>
+          {/* <p>
+  Hello! I’m <span class="highlight-role">Niño Bacaoco</span>, a 
+  <span class="highlight-role"> front-end developer</span> and 
+  <span class="highlight-role"> UI/UX designer</span> focused on building 
+  <span class="highlight-action"> clean</span>, 
+  <span class="highlight-action"> user-centered</span>, and 
+  <span class="highlight-action"> accessible</span> web interfaces.
+</p>
 
+<p>
+  I turn <span class="highlight-impact">ideas into intuitive designs</span> through 
+  <span class="highlight-action"> wireframing</span>, 
+  <span class="highlight-action"> prototyping</span>, and 
+  <span class="highlight-action"> usability testing</span>, helping brands deliver 
+  <span class="highlight-impact"> high-quality</span>, 
+  <span class="highlight-impact"> responsive</span> digital solutions that 
+  <span class="highlight-impact"> work and convert</span>.
+</p> */}
+<p>Hi! I'm <strong>Niño Bacaoco</strong> — a <span class="role-emphasis">front-end developer</span> and <span class="role-emphasis">UI/UX designer</span> focused on creating <span class="keyword-emphasis">clean</span>, <span class="keyword-emphasis">responsive</span>, and <span class="keyword-emphasis">user-centered</span> digital experiences.</p>
+
+<p>I specialize in transforming ideas into intuitive interfaces using <span class="keyword-emphasis">wireframing</span>, <span class="keyword-emphasis">prototyping</span>, and <span class="keyword-emphasis">usability testing</span>. My goal? To help build websites that don't just look good — they <span class="shine-emphasis">work</span> and <span class="shine-emphasis">convert</span>.</p>
             <h3>My Skills</h3>
 
             <div className="skills-container">
