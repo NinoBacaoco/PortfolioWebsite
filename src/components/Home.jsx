@@ -99,7 +99,7 @@ const Home = forwardRef(({ isInView }, ref) => {
           </div>
           
           <div className="resume-container">
-            <a href="https://drive.google.com/file/d/1bHMeYmKxJsTsp-_iGhvpLqN_OW6wRL9y/view?usp=sharing" className="resume-btn" target="_blank" rel="noopener noreferrer">VIEW RESUME</a>
+            <a href="https://drive.google.com/file/d/1mPaFisgo784jRLsRrw22oB_lo7GyJNOp/view?usp=sharing" className="resume-btn" target="_blank" rel="noopener noreferrer">VIEW RESUME</a>
           </div>
         </div>
       </div>
