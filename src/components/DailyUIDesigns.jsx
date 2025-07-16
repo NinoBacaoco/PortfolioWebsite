@@ -289,14 +289,12 @@ const DailyUIDesigns = () => {
               className="design-card"
               id={`design-${design.id}`}
             >
-              <div className="design-image">
+              <div
+                onClick={() => openModal(design.image)}
+                className="design-image clickable-image"
+              >
                 {design.image ? (
-                  <img
-                    src={design.image}
-                    alt={design.title}
-                    onClick={() => openModal(design.image)}
-                    className="clickable-image"
-                  />
+                  <img src={design.image} alt={design.title} />
                 ) : (
                   <ProjectImageFallback text={design.title} />
                 )}
@@ -357,7 +355,32 @@ function getDescriptionForDay(day) {
     1: "Sign Up Page - Duolingo mobile sign-up recreation",
     2: "Credit Card Checkout - Duolingo mobile checkout recreation",
     3: "Landing Page - Pinterest web layout recreation",
-    // ... (rest of descriptions)
+    4: "Calculator - Simple mobile calculator redesign",
+    5: "App Icon - Valorant logo recreation",
+    6: "User Profile - Steam profile page recreation",
+    7: "Settings - PayPal settings page redesign",
+    8: "404 Page - Duolingo web 404 page recreation",
+    9: "Music Player - Basic music player UI",
+    10: "Social Share - Simple share button UI",
+    11: "Flash Message - Minimal alert component",
+    12: "E-Commerce Shop - Redragon product page recreation",
+    13: "Direct Messaging - Steam messaging UI recreation",
+    14: "Countdown Timer - Pomofocus timer UI recreation",
+    15: "On/Off Switch - Sun/night toggle switch",
+    16: "Pop-Up Overlay - Glossier web modal recreation",
+    17: "Purchase Receipt - SHEIN mobile receipt recreation",
+    18: "Analytics Chart - Duolingo/Gmail parallax chart recreation",
+    19: "Leaderboard - Duolingo mobile leaderboard redesign",
+    20: "Location Tracker - Mobile tracker with direction animation",
+    21: "Home Monitoring Dashboard - Neobrutalist web dashboard",
+    22: "Search Interface - Custom filterable search UI",
+    23: "Onboarding Experience - Simple step-by-step onboarding",
+    24: "Boarding Pass - Minimal mobile boarding pass",
+    25: "TV App Interface - Web TV layout recreation",
+    26: "Subscribe Form - Gradient glassmorphism form",
+    27: "Dropdown Menu - Steam profile dropdown recreation",
+    28: "Contact Form - Glassy gradient contact form",
+    29: "Map Design - Cyber-themed dark world map",
     30: "Pricing - Cloud storage pricing table",
   };
   return (
