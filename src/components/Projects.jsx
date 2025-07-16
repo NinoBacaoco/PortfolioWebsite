@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, forwardRef, useState } from "react";
 import "../styles/Projects.css";
 import ProjectImageFallback from "./ProjectImageFallback";
@@ -14,16 +15,17 @@ const Projects = forwardRef(({ isInView }, ref) => {
   const [expandedCards, setExpandedCards] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const navigate = useNavigate();
 
   // Image preview modal handlers
   const openModal = (image) => {
-    console.log('Projects - Opening modal with image:', image);
+    console.log("Projects - Opening modal with image:", image);
     setSelectedImage(image);
     setModalOpen(true);
   };
 
   const closeModal = () => {
-    console.log('Projects - Closing modal');
+    console.log("Projects - Closing modal");
     setModalOpen(false);
   };
 
@@ -41,7 +43,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
         if (cardElement) {
           if (isExpanding) {
             // When expanding, scroll to the h3 heading
-            const headingElement = cardElement.querySelector('h3');
+            const headingElement = cardElement.querySelector("h3");
             if (headingElement) {
               headingElement.scrollIntoView({
                 behavior: "smooth",
@@ -56,7 +58,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
             }
           } else {
             // When collapsing, scroll to the project image
-            const imageElement = cardElement.querySelector('.project-image');
+            const imageElement = cardElement.querySelector(".project-image");
             if (imageElement) {
               imageElement.scrollIntoView({
                 behavior: "smooth",
@@ -168,9 +170,9 @@ const Projects = forwardRef(({ isInView }, ref) => {
           <div className="projects-grid">
             <div className="project-card" id="project-academic-1">
               <div className="project-image">
-                <img 
-                  src={thumbnail} 
-                  alt="Portfolio Website" 
+                <img
+                  src={thumbnail}
+                  alt="Portfolio Website"
                   className="clickable-image"
                   onClick={() => openModal(thumbnail)}
                 />
@@ -250,9 +252,9 @@ const Projects = forwardRef(({ isInView }, ref) => {
             </div>
             <div className="project-card" id="project-academic-2">
               <div className="project-image">
-                <img 
-                  src={spotselectLogin} 
-                  alt="Portfolio Website" 
+                <img
+                  src={spotselectLogin}
+                  alt="Portfolio Website"
                   className="clickable-image"
                   onClick={() => openModal(spotselectLogin)}
                 />
@@ -398,14 +400,9 @@ const Projects = forwardRef(({ isInView }, ref) => {
                     <span>Figma</span>
                   </div>
                   <div className="project-links">
-                    <a 
-                      href="#dailyui" 
+                    <a
                       className="btn-link"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        history.pushState(null, null, '#dailyui');
-                        window.dispatchEvent(new HashChangeEvent('hashchange'));
-                      }}
+                      onClick={() => navigate("/projects/dailyui")}
                     >
                       View All Designs
                     </a>
@@ -501,9 +498,9 @@ const Projects = forwardRef(({ isInView }, ref) => {
             </div>
             <div className="project-card" id="project-internship-3">
               <div className="project-image">
-                <img 
-                  src={appGenSpaceDashboard} 
-                  alt="Interface Redesign" 
+                <img
+                  src={appGenSpaceDashboard}
+                  alt="Interface Redesign"
                   className="clickable-image"
                   onClick={() => openModal(appGenSpaceDashboard)}
                 />
@@ -588,10 +585,10 @@ const Projects = forwardRef(({ isInView }, ref) => {
 
       {/* Image Modal */}
       {modalOpen && selectedImage && (
-        <ImageModal 
-          isOpen={modalOpen} 
-          imageUrl={selectedImage} 
-          onClose={closeModal} 
+        <ImageModal
+          isOpen={modalOpen}
+          imageUrl={selectedImage}
+          onClose={closeModal}
         />
       )}
     </section>
