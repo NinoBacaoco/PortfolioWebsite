@@ -158,7 +158,7 @@ const Projects = forwardRef(({ isInView }, ref) => {
     >
       <div className="section-content">
         <div className="section-header">
-          <div className="big-number">01</div>
+          {/* <div className="big-number">01</div> */}
           <h2 className="section-title">
             My <span className="highlight">Projects</span>
           </h2>

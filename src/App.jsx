@@ -6,9 +6,11 @@ import Home from "./components/Home";
 import Projects from "./components/Projects";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Services from "./components/Services";
 import Firefly from "./components/Firefly";
 import DailyUIDesigns from "./components/DailyUIDesigns";
 import Loader from "./components/Loader";
+import Footer from "./components/Footer";
 
 function FullSite() {
   const [activeSection, setActiveSection] = useState("home");
@@ -16,12 +18,19 @@ function FullSite() {
   const projectsRef = useRef(null);
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
+  const servicesRef = useRef(null);
   const location = useLocation();
 
   useEffect(() => {
     const path = location.pathname.replace("/", "");
 
-    const validPath = ["home", "projects", "about", "contact"].includes(path)
+    const validPath = [
+      "home",
+      "projects",
+      "about",
+      "contact",
+      "services",
+    ].includes(path)
       ? path
       : "home";
     setActiveSection(validPath);
@@ -31,6 +40,7 @@ function FullSite() {
       projects: projectsRef,
       about: aboutRef,
       contact: contactRef,
+      services: servicesRef,
     }[validPath];
 
     if (sectionRef?.current) {
@@ -61,6 +71,8 @@ function FullSite() {
         newActiveSection = "projects";
       } else if (isSectionInView(homeRef.current)) {
         newActiveSection = "home";
+      } else if (isSectionInView(servicesRef.current)) {
+        newActiveSection = "services";
       }
 
       // Always use /home instead of blank root path
@@ -92,6 +104,7 @@ function FullSite() {
       projects: projectsRef,
       about: aboutRef,
       contact: contactRef,
+      services: servicesRef,
     }[sectionName];
 
     if (sectionRef?.current) {
@@ -113,8 +126,11 @@ function FullSite() {
         <Home ref={homeRef} isInView={activeSection === "home"} />
         <Projects ref={projectsRef} isInView={activeSection === "projects"} />
         <About ref={aboutRef} isInView={activeSection === "about"} />
+        <Services ref={servicesRef} isInView={activeSection === "services"} />
         <Contact ref={contactRef} isInView={activeSection === "contact"} />
       </main>
+
+      <Footer />
     </>
   );
 }
@@ -158,6 +174,7 @@ function App() {
             <Route path="/home" element={<FullSite />} />
             <Route path="/projects" element={<FullSite />} />
             <Route path="/about" element={<FullSite />} />
+            <Route path="/services" element={<FullSite />} />
             <Route path="/contact" element={<FullSite />} />
             <Route path="/projects/dailyui" element={<DailyUIDesigns />} />
           </Routes>

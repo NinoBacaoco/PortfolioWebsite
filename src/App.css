@@ -209,8 +209,13 @@ button {
 
 /* Main Content */
 main {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 /* Parallax Sections */
