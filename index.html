@@ -4,45 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/ninoBacaocoLogo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
     <title>Portfolio | Niño Bacaoco</title>
-    <!-- <meta name="description" content="Personal portfolio showcasing projects and skills as a full-stack developer"> -->
-    <script>
-      // Hide footer by default during initial load
-      document.addEventListener('DOMContentLoaded', function() {
-        const footer = document.getElementById('site-footer');
-        if (footer) {
-          footer.style.display = 'none';
-        }
-      });
-    </script>
+    <!-- Optional: Add meta description for SEO -->
+    <!-- <meta name="description" content="Portfolio website of Niño Bacaoco, showcasing UI/UX design and front-end development skills."> -->
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <footer
-      id="site-footer"
-      style="
-        text-align: center;
-        padding: 1.5rem 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        width: 100%;
-        display: none;
-      "
-    >
-      <img
-        src="/ninoBacaocoLogo.svg"
-        alt="Niño Bacaoco Logo"
-        style="width: 40px; height: 40px; margin-bottom: 1rem; opacity: 0.8"
-      />
-      <p style="color: #fff; font-size: 0.9rem; margin: 0.5rem 0; opacity: 0.8">
-        © 2025 Niño Bacaoco. All rights reserved.
-      </p>
-    </footer>
   </body>
 </html>

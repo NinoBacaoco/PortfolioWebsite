@@ -1,0 +1,129 @@
+.footer {
+  position: relative;
+  background-color: #000;
+  color: var(--text-secondary);
+  padding: 3rem 1rem 2rem;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Center: Logo and Rights */
+.footer-center {
+  text-align: center;
+}
+
+.footer-logo {
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-rights {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Bottom-left: Contact info */
+.footer-contacts {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+  text-align: left;
+}
+.footer-contacts a {
+    color: inherit;
+    text-decoration: none;
+    transition: none;
+    font-weight: inherit;
+  }
+  .footer-contacts span:hover {
+    color: var(--accent-primary); /* or any highlight color */
+  }  
+
+/* Bottom-right: Social icons */
+.footer-socials {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.3rem;
+}
+
+.footer-socials a {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: var(--accent-primary);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .footer {
+    padding: 4rem 1rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-inner > * {
+    margin-bottom: 1rem;
+  }
+
+  .footer-socials,
+  .footer-contacts {
+    position: static;
+    margin: 2;
+  }
+
+  .footer-socials {
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .footer-contacts {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  /* Add bullet (•) separator between contact items */
+  .footer-contacts span {
+    position: relative;
+  }
+
+  .footer-contacts span:not(:last-child)::after {
+    content: "•";
+    margin: 0 0.5rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+
+  .footer-logo {
+    height: 25px;
+    margin-top: 0.5rem;
+  }
+
+  .footer-rights {
+    margin-top: 0.25rem;
+  }
+}
