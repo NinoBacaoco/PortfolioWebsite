@@ -1,0 +1,141 @@
+/* Services Section */
+.services-section {
+  padding: 5rem 1rem;
+  /* color: var(--text-secondary); */
+
+  background-color: #000; /* Distinct dark blue-tinted background */
+}
+
+.services-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Grid Layout like Projects */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Service Card Styling: Matches Projects Card */
+.service-card {
+  background-color: rgba(157, 78, 221, 0.05); /* Subtle purple tint */
+  border: 1px solid rgba(157, 78, 221, 0.15);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  transition: all var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.service-card:hover {
+  background-color: rgba(157, 78, 221, 0.08);
+  border-color: rgba(157, 78, 221, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Typography */
+.service-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.service-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.service-description ul {
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.service-description li {
+  list-style: disc;
+  margin-bottom: 0.4rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .services-heading {
+    font-size: 1.7rem;
+  }
+
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-title {
+    font-size: 1.2rem;
+  }
+
+  .service-description {
+    font-size: 0.95rem;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 0 1rem;
+  }
+
+  .service-card {
+    padding: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-heading {
+    font-size: 1.7rem;
+  }
+
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-title {
+    font-size: 1.2rem;
+  }
+
+  .service-description {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    padding: 1.2rem;
+  }
+
+  .service-title {
+    font-size: 1.1rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+  }
+}
