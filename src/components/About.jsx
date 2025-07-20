@@ -20,7 +20,6 @@ const About = forwardRef(({ isInView }, ref) => {
           ctaContainer.classList.add("animate");
         }, 1100); // adjust delay to fit after social icons
       }
-      
 
       // Reset and restart animations
       if (titleElement) {
@@ -86,23 +85,23 @@ const About = forwardRef(({ isInView }, ref) => {
         <div className="about-content">
           <div className="about-text">
             {/* <p>
-  Hello! I’m <span class="highlight-role">Niño Bacaoco</span>, a 
-  <span class="highlight-role"> front-end developer</span> and 
-  <span class="highlight-role"> UI/UX designer</span> focused on building 
-  <span class="highlight-action"> clean</span>, 
-  <span class="highlight-action"> user-centered</span>, and 
-  <span class="highlight-action"> accessible</span> web interfaces.
-</p>
+                Hello! I’m <span class="highlight-role">Niño Bacaoco</span>, a 
+                <span class="highlight-role"> front-end developer</span> and 
+                <span class="highlight-role"> UI/UX designer</span> focused on building 
+                <span class="highlight-action"> clean</span>, 
+                <span class="highlight-action"> user-centered</span>, and 
+                <span class="highlight-action"> accessible</span> web interfaces.
+              </p>
 
-<p>
-  I turn <span class="highlight-impact">ideas into intuitive designs</span> through 
-  <span class="highlight-action"> wireframing</span>, 
-  <span class="highlight-action"> prototyping</span>, and 
-  <span class="highlight-action"> usability testing</span>, helping brands deliver 
-  <span class="highlight-impact"> high-quality</span>, 
-  <span class="highlight-impact"> responsive</span> digital solutions that 
-  <span class="highlight-impact"> work and convert</span>.
-</p> */}
+              <p>
+                I turn <span class="highlight-impact">ideas into intuitive designs</span> through 
+                <span class="highlight-action"> wireframing</span>, 
+                <span class="highlight-action"> prototyping</span>, and 
+                <span class="highlight-action"> usability testing</span>, helping brands deliver 
+                <span class="highlight-impact"> high-quality</span>, 
+                <span class="highlight-impact"> responsive</span> digital solutions that 
+                <span class="highlight-impact"> work and convert</span>.
+              </p> */}
             <p>
               Need a <strong class="role-emphasis">tech-savvy VA</strong> who
               can juggle
@@ -182,13 +181,13 @@ const About = forwardRef(({ isInView }, ref) => {
               <div className="skill-card">Google Workspace</div>
               <div className="skill-card">Microsoft Office</div>
               <div className="skill-card">Data Entry</div>
-              <div className="skill-card">Chat Gpt</div>
+              <div className="skill-card">ChatGPT</div>
               <div className="skill-card">Email Management</div>
               <div className="skill-card">Calendar Management</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 });
