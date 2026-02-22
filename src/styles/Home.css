@@ -94,7 +94,6 @@
   padding: 0.5rem 1rem;
   border-radius: 8px;
   margin: 1rem 0;
-  max-width: 600px;
   width: 100%;
 }
 
@@ -108,7 +107,9 @@
   position: relative;
   box-shadow: 0 0 8px #fcb902;
   will-change: width, opacity;
-  transition: opacity 0.4s ease-out, width 0.5s ease-out,
+  transition:
+    opacity 0.4s ease-out,
+    width 0.5s ease-out,
     box-shadow 0.4s ease-out;
   max-width: 100%;
   /* animation will be set by JS dynamically */
@@ -350,7 +351,9 @@
 
   .home-container .glowing-underline {
     animation: expandWidthNameMobile 0.6s 0.4s ease-out forwards;
-    transition: opacity 0.3s ease-out, width 0.3s ease-out,
+    transition:
+      opacity 0.3s ease-out,
+      width 0.3s ease-out,
       box-shadow 0.3s ease-out;
   }
 }

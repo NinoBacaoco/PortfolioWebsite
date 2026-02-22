@@ -122,8 +122,9 @@ const About = forwardRef(({ isInView }, ref) => {
 
             <p>
               Hi! I’m <strong class="name-emphasis">Niño Bacaoco</strong> — a
-              <span class="role-emphasis"> Front-end Developer</span> and
-              <span class="role-emphasis"> UI/UX Designer</span> focused on
+              <span class="role-emphasis"> Front-end Developer,</span> 
+              <span class="role-emphasis"> UI/UX Designer</span> and
+              <span class="role-emphasis"> Operations Support professional</span> focused on
               creating
               <span class="keyword-emphasis"> clean</span>,
               <span class="keyword-emphasis"> responsive</span>, and
@@ -184,6 +185,8 @@ const About = forwardRef(({ isInView }, ref) => {
               <div className="skill-card">ChatGPT</div>
               <div className="skill-card">Email Management</div>
               <div className="skill-card">Calendar Management</div>
+              <div className="skill-card">Slacks</div>
+              <div className="skill-card">Airtable</div>
               </div>
             </div>
           </div>

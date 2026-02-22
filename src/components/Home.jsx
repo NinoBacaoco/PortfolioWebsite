@@ -118,7 +118,7 @@ const Home = forwardRef(({ isInView }, ref) => {
 
           <div className="hero-right">
             <div className="role">
-              Personal Assistant <span className="separator">•</span> Frontend
+              Virtual Assistant <span className="separator">•</span> Frontend
               Developer
             </div>
 
