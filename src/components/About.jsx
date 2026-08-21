@@ -8,7 +8,7 @@ const About = forwardRef(({ isInView }, ref) => {
     if (isInView && ref.current) {
       const titleElement = ref.current.querySelector(".section-title");
       const textElements = ref.current.querySelectorAll(
-        ".about-text p, .about-text h3"
+        ".about-text p, .about-text h3",
       );
       const skillCards = ref.current.querySelectorAll(".skill-card");
       const ctaContainer = ref.current.querySelector(".cta-container");
@@ -48,9 +48,12 @@ const About = forwardRef(({ isInView }, ref) => {
           void element.offsetWidth;
 
           // Add animation class with staggered delay
-          setTimeout(() => {
-            element.classList.add("animate");
-          }, 700 + index * 200);
+          setTimeout(
+            () => {
+              element.classList.add("animate");
+            },
+            700 + index * 200,
+          );
         });
       }
 
@@ -64,9 +67,12 @@ const About = forwardRef(({ isInView }, ref) => {
           void card.offsetWidth;
 
           // Add animation class with staggered delay
-          setTimeout(() => {
-            card.classList.add("animate");
-          }, 1200 + index * 100);
+          setTimeout(
+            () => {
+              card.classList.add("animate");
+            },
+            1200 + index * 100,
+          );
         });
       }
     }
@@ -103,43 +109,32 @@ const About = forwardRef(({ isInView }, ref) => {
                 <span class="highlight-impact"> work and convert</span>.
               </p> */}
             <p>
-              Need a <strong class="role-emphasis">tech-savvy VA</strong> who
-              can juggle
-              <span class="keyword-emphasis"> admin tasks</span>,
-              <span class="keyword-emphasis"> light design work</span>, and
-              <span class="keyword-emphasis"> website updates</span> — all
-              without constant supervision?
+              Hi, I'm <strong class="name-emphasis">Niño Bacaoco</strong>. I
+              design interfaces and run support operations — so you don't need
+              two people for what one person can handle.
             </p>
 
             <p>
-              Looking for someone
-              <span class="shine-emphasis"> quick to learn</span> and
-              <span class="shine-emphasis"> easy to work with</span>? <br />
-              <strong class="table-emphasis">
-                ✅ That’s exactly what I bring to the table.
-              </strong>
+              I've led <span class="keyword-emphasis">support teams</span> to a
+              <span class="shine-emphasis"> 90% KPI standard</span>, and I build
+              <span class="keyword-emphasis"> interfaces</span> in
+              <span class="keyword-emphasis"> Figma</span> and
+              <span class="keyword-emphasis"> React</span> that get tested with
+              real users before they ship.
             </p>
 
             <p>
-              Hi! I’m <strong class="name-emphasis">Niño Bacaoco</strong> — a
-              <span class="role-emphasis"> Front-end Developer,</span> 
-              <span class="role-emphasis"> UI/UX Designer</span> and
-              <span class="role-emphasis"> Operations Support professional</span> focused on
-              creating
-              <span class="keyword-emphasis"> clean</span>,
-              <span class="keyword-emphasis"> responsive</span>, and
-              <span class="keyword-emphasis"> user-centered</span> experiences.
+              If you need someone to keep your{" "}
+              <span class="keyword-emphasis">website</span>,
+              <span class="keyword-emphasis"> admin</span>, and
+              <span class="keyword-emphasis"> day-to-day operations</span>{" "}
+              running without having to check in on every task — that's the work
+              I do.
             </p>
 
-            <p>
-              I turn ideas into intuitive interfaces using
-              <span class="keyword-emphasis"> wireframing</span>,
-              <span class="keyword-emphasis"> prototyping</span>, and
-              <span class="keyword-emphasis"> usability testing</span>.<br />
-              My goal? To build websites that not only
-              <span class="shine-emphasis"> look great</span> — but also
-              <span class="shine-emphasis"> work smoothly</span> and
-              <span class="shine-emphasis"> convert effectively</span>.
+            <p class="assurance-line">
+              I show up, I report clearly, and I don't need to be managed twice
+              for the same thing.
             </p>
             <div className="cta-container">
               <a
@@ -172,6 +167,8 @@ const About = forwardRef(({ isInView }, ref) => {
               <div className="skill-card">Node.js</div>
               <div className="skill-card">PostgreSQL</div>
               <div className="skill-card">MySQL</div>
+              <div className="skill-card">Git</div>
+              <div className="skill-card">GitHub</div>
               <div className="skill-card">Canva</div>
               <div className="skill-card">Capcut</div>
               <div className="skill-card">Illustrator</div>
@@ -187,10 +184,13 @@ const About = forwardRef(({ isInView }, ref) => {
               <div className="skill-card">Calendar Management</div>
               <div className="skill-card">Slacks</div>
               <div className="skill-card">Airtable</div>
-              </div>
+              <div className="skill-card">AI-Assisted Development</div>
+              <div className="skill-card">Team Coordination</div>
+              <div className="skill-card">SOP Compliance</div>
             </div>
           </div>
         </div>
+      </div>
     </section>
   );
 });

@@ -118,8 +118,9 @@ const Home = forwardRef(({ isInView }, ref) => {
 
           <div className="hero-right">
             <div className="role">
-              Virtual Assistant <span className="separator">•</span> Frontend
-              Developer
+              <span>Team Lead</span>
+              <span className="separator">•</span>
+              Tech VA <span className="separator">•</span> Frontend Developer
             </div>
 
             <div className="name-block">
@@ -133,7 +134,7 @@ const Home = forwardRef(({ isInView }, ref) => {
 
             <div className="resume-container">
               <a
-                href="https://drive.google.com/file/d/116PMIcEhllLVa80Ky6q1d0Ho8-udHIdS/view?usp=sharing"
+                href="https://drive.google.com/file/d/1-8Fx3tGTRDo1pSjABtPt-62iF9Hufc7y/view?usp=sharing"
                 className="resume-btn"
                 target="_blank"
                 rel="noopener noreferrer"

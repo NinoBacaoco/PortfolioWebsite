@@ -39,7 +39,7 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div className="footer-contacts">
-          <span>  <a href="mailto:nino.bacaoco@gmail.com">nino.bacaoco@gmail.com</a></span>
+          <span>  <a href="mailto:ninobacaoco.work@gmail.com">ninobacaoco.work@gmail.com</a></span>
           <span>+63 9955145147</span>
           <span>Cebu City, Philippines</span>
         </div>
